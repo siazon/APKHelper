@@ -558,7 +558,7 @@ namespace APKHelper.ViewModels
                                     DefaultButton = ContentDialogButton.Close,
                                     CloseButtonText = _loader.GetString("IKnow"),
                                     PrimaryButtonText = _loader.GetString("StartWSA"),
-                                    ContentUrl = "https://raw.githubusercontent.com/Jomalone/TopWord/master/TopWord/desc.md",
+                                    ContentUrl = "https://raw.githubusercontent.com/JomaloneJo/vscode/main/src/desc.md",
                                 };
                                 ContentDialogResult result = await dialog.ShowAsync();
                                 if (result == ContentDialogResult.Primary)
@@ -630,7 +630,7 @@ namespace APKHelper.ViewModels
                 ContentDialog dialog = new MarkdownDialog()
                 {
                     XamlRoot = _page.XamlRoot,
-                    ContentUrl = "https://raw.githubusercontent.com/Jomalone/TopWord/master/TopWord/desc.md",
+                    ContentUrl = "https://raw.githubusercontent.com/JomaloneJo/vscode/main/src/desc.md",
                 };
                 _ = dialog.ShowAsync();
                 return;
