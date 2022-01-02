@@ -28,7 +28,7 @@ namespace APKHelper.Pages
 #if !DEBUG
             string _path = string.Empty;
 #else
-            string _path = "";// @"C:\Users\siazon\Downloads\com.tencent.mtt_12.1.5.5044_12155500.apk";
+            string _path = "";// @"C:\Users\Jomalone\Downloads\com.tencent.mtt_12.1.5.5044_12155500.apk";
 #endif
             AppActivationArguments args = AppInstance.GetCurrent().GetActivatedEventArgs();
             switch (args.Kind)

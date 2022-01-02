@@ -96,7 +96,7 @@ namespace APKHelper.Pages.SettingsPages
             if (name != null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name)); }
         }
 
-        internal string IssuePath = "https://github.com/siazon/APKHelper/issues";
+        internal string IssuePath = "https://github.com/Jomalone/APKHelper/issues";
 
         internal string VersionTextBlockText
         {
@@ -177,7 +177,7 @@ namespace APKHelper.Pages.SettingsPages
             UpdateInfo info = null;
             try
             {
-                info = await UpdateHelper.CheckUpdateAsync("siazon", "APK-Helper");
+                info = await UpdateHelper.CheckUpdateAsync("Jomalone", "APK-Helper");
             }
             catch (Exception ex)
             {

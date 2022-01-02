@@ -40,8 +40,10 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <AssetTargetFallback>net6.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
     <DefaultLanguage>zh-CN</DefaultLanguage>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\APKHelper\APKHelper.csproj</EntryPointProjectUniqueName>
+    <PackageCertificateThumbprint>E46B560CD0BF5ED39BD62C505E72A491CC9D4E52</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>APKHelper %28Package%29_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -49,6 +51,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <None Include="APKHelper %28Package%29_TemporaryKey.pfx" />
     <Content Include="Images\SmallTile.scale-400.png" />
     <Content Include="Images\SplashScreen.scale-150.png" />
     <Content Include="Images\SplashScreen.scale-200.png" />
