@@ -3,7 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using System.Collections.Generic;
-
+using MetroLog;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -11,8 +11,11 @@ namespace APKHelper.Controls
 {
     public sealed partial class CapabilitiesInfoControl : UserControl
     {
-        public CapabilitiesInfoControl() => InitializeComponent();
-
+        public CapabilitiesInfoControl()
+        {
+            InitializeComponent();
+        }
+        ILogger log = LogManagerFactory.DefaultLogManager.GetLogger<CapabilitiesInfoControl>();
         public string HeadText
         {
             get => HeaderTextBlock.Text;

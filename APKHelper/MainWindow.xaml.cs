@@ -39,7 +39,7 @@ namespace APKHelper
             UIHelper.GetAppWindowForCurrentWindow(this).SetIcon("favicon.ico");
             IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             Graphics graphics = Graphics.FromHwnd(hwnd);
-            SetWindowSize(hwnd, 852, 614);
+            SetWindowSize(hwnd, 682, 414);
             UIHelper.MainWindow = this;
             MainPage mainPage = new();
             EnableMica(hwnd, true);
@@ -79,6 +79,15 @@ namespace APKHelper
         }
 
         private void SetWindowSize(IntPtr hwnd, int width, int height)
+        {
+            int dpi = PInvoke.User32.GetDpiForWindow(hwnd);
+            float scalingFactor = (float)dpi / 96;
+            width = (int)(width * scalingFactor);
+            height = (int)(height * scalingFactor);
+            UIHelper.GetAppWindowForCurrentWindow(this).Resize(new Windows.Graphics.SizeInt32(width, height));
+        }
+
+        private void SetWindowLocation(IntPtr hwnd, int width, int height)
         {
             int dpi = PInvoke.User32.GetDpiForWindow(hwnd);
             float scalingFactor = (float)dpi / 96;

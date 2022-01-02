@@ -22,12 +22,14 @@ namespace APKServer.Filters
             // Try getting icon name from manifest, may be an image
             string iconName = getValue("icon=");
 
-            return new ApkInfo()
+            var info= new ApkInfo()
             {
                 AppName = getValue("label="),
                 Icon = iconName == defaultEmptyValue ?
                     Icon.Default : new Icon(iconName)
             };
+
+            return info;
         }
 
         public override void clear() => segments = new string[] { };

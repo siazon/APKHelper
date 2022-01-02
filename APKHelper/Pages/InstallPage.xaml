@@ -35,7 +35,7 @@
             Margin="0,16,0,0"
             Visibility="{Binding IsInitialized, Mode=OneWay}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="0.5*" />
                 <RowDefinition Height="auto" />
@@ -96,7 +96,7 @@
                         Text="{x:Bind sys:String.Format(Provider.VersionFormat, Provider.ApkInfo.VersionName), Mode=OneWay}"
                         ToolTipService.ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"
                         Visibility="{Binding AppVersionVisibility}" />
-                    <controls:CapabilitiesInfoControl
+                    <controls:CapabilitiesInfoControl Background="Red"
                         x:Name="AppCapabilities"
                         x:Uid="/InstallPage/AppCapabilities"
                         Grid.Row="4"
@@ -112,7 +112,7 @@
                     Margin="12,0,0,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top">
-                    <Image x:Name="AppIcon" Source="{Binding ApkInfo.Icon.RealPath}" />
+                    <Image x:Name="AppIcon" Source="{Binding ApkInfo.Icon.RealPath,Mode=TwoWay}" />
                 </Border>
             </Grid>
             <Grid

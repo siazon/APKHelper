@@ -117,7 +117,7 @@
                                     <HyperlinkButton
                                         x:Uid="/SettingsPage/ReleaseNotes"
                                         Margin="2,0"
-                                        NavigateUri="https://github.com/Paving-Base/APK-Installer/releases/" />
+                                        NavigateUri="https://docs.microsoft.com/zh-cn/" />
                                 </StackPanel>
                             </StackPanel>
                         </controls:Setting.Description>

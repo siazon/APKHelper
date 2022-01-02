@@ -351,7 +351,6 @@ namespace APKHelper.ViewModels
             _page = Page;
 
             OpenAPKFileText = _loader.GetString("OpenAPKFile");
-            Console.WriteLine("________APKFILE__________:" + OpenAPKFileText);
             // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
             Dispose(disposing: false);
         }
@@ -514,6 +513,7 @@ namespace APKHelper.ViewModels
         {
             if (!string.IsNullOrEmpty(_path))
             {
+                AppVersionVisibility = AppPublisherVisibility = AppCapabilitiesVisibility = Visibility.Visible;
                 WaitProgressText = _loader.GetString("Loading");
                 try
                 {
@@ -558,7 +558,7 @@ namespace APKHelper.ViewModels
                                     DefaultButton = ContentDialogButton.Close,
                                     CloseButtonText = _loader.GetString("IKnow"),
                                     PrimaryButtonText = _loader.GetString("StartWSA"),
-                                    ContentUrl = "https://raw.githubusercontent.com/Paving-Base/APK-Installer/screenshots/Helpers/How%20To%20Connect%20WSA/How%20To%20Connect%20WSA.md",
+                                    ContentUrl = "https://raw.githubusercontent.com/siazon/TopWord/master/TopWord/desc.md",
                                 };
                                 ContentDialogResult result = await dialog.ShowAsync();
                                 if (result == ContentDialogResult.Primary)
@@ -611,10 +611,11 @@ namespace APKHelper.ViewModels
                 ApkInfo = new ApkInfo();
                 AppName = _loader.GetString("NoPackageWranning");
                 AppVersionVisibility = AppPublisherVisibility = AppCapabilitiesVisibility = Visibility.Collapsed;
+                log.Trace("AppCapabilitiesVisibility=Coolapsed______.");
             }
             IsInitialized = true;
         }
-
+        MetroLog.ILogger log = MetroLog.LogManagerFactory.DefaultLogManager.GetLogger<InstallViewModel>();
         public void CheckAPK()
         {
             ResetUI();
@@ -629,7 +630,7 @@ namespace APKHelper.ViewModels
                 ContentDialog dialog = new MarkdownDialog()
                 {
                     XamlRoot = _page.XamlRoot,
-                    ContentUrl = "https://raw.githubusercontent.com/Paving-Base/APK-Installer/screenshots/Helpers/How%20To%20Connect%20WSA/How%20To%20Connect%20WSA.md",
+                    ContentUrl = "https://raw.githubusercontent.com/siazon/TopWord/master/TopWord/desc.md",
                 };
                 _ = dialog.ShowAsync();
                 return;
@@ -684,6 +685,7 @@ namespace APKHelper.ViewModels
             AppName = _loader.GetString("CannotOpenPackage");
             TextOutputVisibility = InstallOutputVisibility = Visibility.Visible;
             AppVersionVisibility = AppPublisherVisibility = AppCapabilitiesVisibility = Visibility.Collapsed;
+            log.Trace("AppCapabilitiesVisibility=Coolapsed______.");
         }
 
         private void OnDeviceChanged(object sender, DeviceDataEventArgs e)
@@ -776,7 +778,6 @@ namespace APKHelper.ViewModels
         public async void OpenFile()
         {
             TextOutput = "";
-            ApkInfo.Icon.RealPath = "";
             try
             {
                 var window = CacheData.Ins.windows;

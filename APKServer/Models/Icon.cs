@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 
 namespace APKServer.Models
 {
-    public class Icon
+    public class Icon: INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        private void RaisePropertyChangedEvent([System.Runtime.CompilerServices.CallerMemberName] string name = null)
+        {
+            if (name != null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name)); }
+        }
         private const int hdpiWidth = 72;
         public const string DefaultName = "ic_launcher.png";
 
@@ -17,12 +23,20 @@ namespace APKServer.Models
         /// Return absolute path to package icon if @isImage is true,
         /// otherwise return empty string
         /// </summary>
-        public string RealPath { get; set; }
+        private string _realPath;
+
+        public string RealPath
+        {
+            get { return _realPath; }
+            set { _realPath = value;
+                RaisePropertyChangedEvent();
+            }
+        }
 
         /// <summary>
         /// Determines whether icon of package is an image
         /// </summary>
-        public bool isImage => !DefaultName.Equals(IconName) && !isMarkup;
+        public bool isImage => !DefaultName.Equals(IconName);//&& !isMarkup;
 
         internal bool isMarkup => IconName
             .EndsWith(".xml", StringComparison.OrdinalIgnoreCase);
