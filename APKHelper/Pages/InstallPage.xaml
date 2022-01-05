@@ -22,7 +22,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid 
+        <Grid
             x:Name="CustomTitleBar"
             Grid.Row="0"
             Height="32"
@@ -321,11 +321,11 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1" Margin="24 0 24 3">
-                <Button x:Name="btnOpenFile" HorizontalAlignment="Center" Content="{Binding OpenAPKFileText}" Click="btnOpenApkFile_Click"></Button>
+            <Grid Grid.Row="1"  Margin="24 0 24 3">
+                <Button x:Name="btnOpenFile" Visibility="{Binding !IsInstalling, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Center" Content="{Binding OpenAPKFileText}" Click="btnOpenApkFile_Click"></Button>
             </Grid>
 
-            <Grid Grid.Row="2" Margin="24 0 24 3">
+            <Grid  Grid.Row="2" Margin="24 0 24 3">
                 
             </Grid>
         </Grid>

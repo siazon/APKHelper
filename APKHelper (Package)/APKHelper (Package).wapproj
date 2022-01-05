@@ -45,6 +45,24 @@
     <PackageCertificateThumbprint>E46B560CD0BF5ED39BD62C505E72A491CC9D4E52</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>APKHelper %28Package%29_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
@@ -87,6 +105,190 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="[10.0.22000.194]">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="String\af-ZA\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\af-ZA\InstallPage.resw" />
+    <PRIResource Include="String\af-ZA\MarkDown.resw" />
+    <PRIResource Include="String\af-ZA\Permissions.resw" />
+    <PRIResource Include="String\af-ZA\Resources.resw" />
+    <PRIResource Include="String\af-ZA\SettingsPage.resw" />
+    <PRIResource Include="String\ar-SA\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\ar-SA\InstallPage.resw" />
+    <PRIResource Include="String\ar-SA\MarkDown.resw" />
+    <PRIResource Include="String\ar-SA\Permissions.resw" />
+    <PRIResource Include="String\ar-SA\Resources.resw" />
+    <PRIResource Include="String\ar-SA\SettingsPage.resw" />
+    <PRIResource Include="String\ca-ES\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\ca-ES\InstallPage.resw" />
+    <PRIResource Include="String\ca-ES\MarkDown.resw" />
+    <PRIResource Include="String\ca-ES\Permissions.resw" />
+    <PRIResource Include="String\ca-ES\Resources.resw" />
+    <PRIResource Include="String\ca-ES\SettingsPage.resw" />
+    <PRIResource Include="String\cs-CZ\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\cs-CZ\InstallPage.resw" />
+    <PRIResource Include="String\cs-CZ\MarkDown.resw" />
+    <PRIResource Include="String\cs-CZ\Permissions.resw" />
+    <PRIResource Include="String\cs-CZ\Resources.resw" />
+    <PRIResource Include="String\cs-CZ\SettingsPage.resw" />
+    <PRIResource Include="String\da-DK\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\da-DK\InstallPage.resw" />
+    <PRIResource Include="String\da-DK\MarkDown.resw" />
+    <PRIResource Include="String\da-DK\Permissions.resw" />
+    <PRIResource Include="String\da-DK\Resources.resw" />
+    <PRIResource Include="String\da-DK\SettingsPage.resw" />
+    <PRIResource Include="String\de-DE\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\de-DE\InstallPage.resw" />
+    <PRIResource Include="String\de-DE\MarkDown.resw" />
+    <PRIResource Include="String\de-DE\Permissions.resw" />
+    <PRIResource Include="String\de-DE\Resources.resw" />
+    <PRIResource Include="String\de-DE\SettingsPage.resw" />
+    <PRIResource Include="String\el-GR\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\el-GR\InstallPage.resw" />
+    <PRIResource Include="String\el-GR\MarkDown.resw" />
+    <PRIResource Include="String\el-GR\Permissions.resw" />
+    <PRIResource Include="String\el-GR\Resources.resw" />
+    <PRIResource Include="String\el-GR\SettingsPage.resw" />
+    <PRIResource Include="String\en-US\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\en-US\InstallPage.resw" />
+    <PRIResource Include="String\en-US\MarkDown.resw" />
+    <PRIResource Include="String\en-US\Permissions.resw" />
+    <PRIResource Include="String\en-US\Resources.resw" />
+    <PRIResource Include="String\en-US\SettingsPage.resw" />
+    <PRIResource Include="String\es-ES\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\es-ES\InstallPage.resw" />
+    <PRIResource Include="String\es-ES\MarkDown.resw" />
+    <PRIResource Include="String\es-ES\Permissions.resw" />
+    <PRIResource Include="String\es-ES\Resources.resw" />
+    <PRIResource Include="String\es-ES\SettingsPage.resw" />
+    <PRIResource Include="String\fi-FI\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\fi-FI\InstallPage.resw" />
+    <PRIResource Include="String\fi-FI\MarkDown.resw" />
+    <PRIResource Include="String\fi-FI\Permissions.resw" />
+    <PRIResource Include="String\fi-FI\Resources.resw" />
+    <PRIResource Include="String\fi-FI\SettingsPage.resw" />
+    <PRIResource Include="String\fr-FR\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\fr-FR\InstallPage.resw" />
+    <PRIResource Include="String\fr-FR\MarkDown.resw" />
+    <PRIResource Include="String\fr-FR\Permissions.resw" />
+    <PRIResource Include="String\fr-FR\Resources.resw" />
+    <PRIResource Include="String\fr-FR\SettingsPage.resw" />
+    <PRIResource Include="String\he-IL\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\he-IL\InstallPage.resw" />
+    <PRIResource Include="String\he-IL\MarkDown.resw" />
+    <PRIResource Include="String\he-IL\Permissions.resw" />
+    <PRIResource Include="String\he-IL\Resources.resw" />
+    <PRIResource Include="String\he-IL\SettingsPage.resw" />
+    <PRIResource Include="String\hu-HU\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\hu-HU\InstallPage.resw" />
+    <PRIResource Include="String\hu-HU\MarkDown.resw" />
+    <PRIResource Include="String\hu-HU\Permissions.resw" />
+    <PRIResource Include="String\hu-HU\Resources.resw" />
+    <PRIResource Include="String\hu-HU\SettingsPage.resw" />
+    <PRIResource Include="String\it-IT\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\it-IT\InstallPage.resw" />
+    <PRIResource Include="String\it-IT\MarkDown.resw" />
+    <PRIResource Include="String\it-IT\Permissions.resw" />
+    <PRIResource Include="String\it-IT\Resources.resw" />
+    <PRIResource Include="String\it-IT\SettingsPage.resw" />
+    <PRIResource Include="String\ja-JP\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\ja-JP\InstallPage.resw" />
+    <PRIResource Include="String\ja-JP\MarkDown.resw" />
+    <PRIResource Include="String\ja-JP\Permissions.resw" />
+    <PRIResource Include="String\ja-JP\Resources.resw" />
+    <PRIResource Include="String\ja-JP\SettingsPage.resw" />
+    <PRIResource Include="String\ko-KR\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\ko-KR\InstallPage.resw" />
+    <PRIResource Include="String\ko-KR\MarkDown.resw" />
+    <PRIResource Include="String\ko-KR\Permissions.resw" />
+    <PRIResource Include="String\ko-KR\Resources.resw" />
+    <PRIResource Include="String\ko-KR\SettingsPage.resw" />
+    <PRIResource Include="String\nl-NL\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\nl-NL\InstallPage.resw" />
+    <PRIResource Include="String\nl-NL\MarkDown.resw" />
+    <PRIResource Include="String\nl-NL\Permissions.resw" />
+    <PRIResource Include="String\nl-NL\Resources.resw" />
+    <PRIResource Include="String\nl-NL\SettingsPage.resw" />
+    <PRIResource Include="String\no-NO\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\no-NO\InstallPage.resw" />
+    <PRIResource Include="String\no-NO\MarkDown.resw" />
+    <PRIResource Include="String\no-NO\Permissions.resw" />
+    <PRIResource Include="String\no-NO\Resources.resw" />
+    <PRIResource Include="String\no-NO\SettingsPage.resw" />
+    <PRIResource Include="String\pl-PL\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\pl-PL\InstallPage.resw" />
+    <PRIResource Include="String\pl-PL\MarkDown.resw" />
+    <PRIResource Include="String\pl-PL\Permissions.resw" />
+    <PRIResource Include="String\pl-PL\Resources.resw" />
+    <PRIResource Include="String\pl-PL\SettingsPage.resw" />
+    <PRIResource Include="String\pt-BR\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\pt-BR\InstallPage.resw" />
+    <PRIResource Include="String\pt-BR\MarkDown.resw" />
+    <PRIResource Include="String\pt-BR\Permissions.resw" />
+    <PRIResource Include="String\pt-BR\Resources.resw" />
+    <PRIResource Include="String\pt-BR\SettingsPage.resw" />
+    <PRIResource Include="String\pt-PT\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\pt-PT\InstallPage.resw" />
+    <PRIResource Include="String\pt-PT\MarkDown.resw" />
+    <PRIResource Include="String\pt-PT\Permissions.resw" />
+    <PRIResource Include="String\pt-PT\Resources.resw" />
+    <PRIResource Include="String\pt-PT\SettingsPage.resw" />
+    <PRIResource Include="String\ro-RO\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\ro-RO\InstallPage.resw" />
+    <PRIResource Include="String\ro-RO\MarkDown.resw" />
+    <PRIResource Include="String\ro-RO\Permissions.resw" />
+    <PRIResource Include="String\ro-RO\Resources.resw" />
+    <PRIResource Include="String\ro-RO\SettingsPage.resw" />
+    <PRIResource Include="String\ru-RU\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\ru-RU\InstallPage.resw" />
+    <PRIResource Include="String\ru-RU\MarkDown.resw" />
+    <PRIResource Include="String\ru-RU\Permissions.resw" />
+    <PRIResource Include="String\ru-RU\Resources.resw" />
+    <PRIResource Include="String\ru-RU\SettingsPage.resw" />
+    <PRIResource Include="String\sr-SP\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\sr-SP\InstallPage.resw" />
+    <PRIResource Include="String\sr-SP\MarkDown.resw" />
+    <PRIResource Include="String\sr-SP\Permissions.resw" />
+    <PRIResource Include="String\sr-SP\Resources.resw" />
+    <PRIResource Include="String\sr-SP\SettingsPage.resw" />
+    <PRIResource Include="String\sv-SE\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\sv-SE\InstallPage.resw" />
+    <PRIResource Include="String\sv-SE\MarkDown.resw" />
+    <PRIResource Include="String\sv-SE\Permissions.resw" />
+    <PRIResource Include="String\sv-SE\Resources.resw" />
+    <PRIResource Include="String\sv-SE\SettingsPage.resw" />
+    <PRIResource Include="String\tr-TR\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\tr-TR\InstallPage.resw" />
+    <PRIResource Include="String\tr-TR\MarkDown.resw" />
+    <PRIResource Include="String\tr-TR\Permissions.resw" />
+    <PRIResource Include="String\tr-TR\Resources.resw" />
+    <PRIResource Include="String\tr-TR\SettingsPage.resw" />
+    <PRIResource Include="String\uk-UA\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\uk-UA\InstallPage.resw" />
+    <PRIResource Include="String\uk-UA\MarkDown.resw" />
+    <PRIResource Include="String\uk-UA\Permissions.resw" />
+    <PRIResource Include="String\uk-UA\Resources.resw" />
+    <PRIResource Include="String\uk-UA\SettingsPage.resw" />
+    <PRIResource Include="String\vi-VN\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\vi-VN\InstallPage.resw" />
+    <PRIResource Include="String\vi-VN\MarkDown.resw" />
+    <PRIResource Include="String\vi-VN\Permissions.resw" />
+    <PRIResource Include="String\vi-VN\Resources.resw" />
+    <PRIResource Include="String\vi-VN\SettingsPage.resw" />
+    <PRIResource Include="String\zh-CN\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\zh-CN\InstallPage.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="String\zh-CN\MarkDown.resw" />
+    <PRIResource Include="String\zh-CN\Permissions.resw" />
+    <PRIResource Include="String\zh-CN\Resources.resw" />
+    <PRIResource Include="String\zh-CN\SettingsPage.resw" />
+    <PRIResource Include="String\zh-TW\CapabilitiesInfoControl.resw" />
+    <PRIResource Include="String\zh-TW\InstallPage.resw" />
+    <PRIResource Include="String\zh-TW\MarkDown.resw" />
+    <PRIResource Include="String\zh-TW\Permissions.resw" />
+    <PRIResource Include="String\zh-TW\Resources.resw" />
+    <PRIResource Include="String\zh-TW\SettingsPage.resw" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

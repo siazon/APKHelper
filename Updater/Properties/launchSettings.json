@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Updater (Package)": {
+      "commandName": "MsixPackage",
+      "nativeDebugging": true
+    },
+    "Updater (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

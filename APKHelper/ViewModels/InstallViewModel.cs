@@ -611,11 +611,9 @@ namespace APKHelper.ViewModels
                 ApkInfo = new ApkInfo();
                 AppName = _loader.GetString("NoPackageWranning");
                 AppVersionVisibility = AppPublisherVisibility = AppCapabilitiesVisibility = Visibility.Collapsed;
-                log.Trace("AppCapabilitiesVisibility=Coolapsed______.");
             }
             IsInitialized = true;
         }
-        MetroLog.ILogger log = MetroLog.LogManagerFactory.DefaultLogManager.GetLogger<InstallViewModel>();
         public void CheckAPK()
         {
             ResetUI();
@@ -685,7 +683,6 @@ namespace APKHelper.ViewModels
             AppName = _loader.GetString("CannotOpenPackage");
             TextOutputVisibility = InstallOutputVisibility = Visibility.Visible;
             AppVersionVisibility = AppPublisherVisibility = AppCapabilitiesVisibility = Visibility.Collapsed;
-            log.Trace("AppCapabilitiesVisibility=Coolapsed______.");
         }
 
         private void OnDeviceChanged(object sender, DeviceDataEventArgs e)

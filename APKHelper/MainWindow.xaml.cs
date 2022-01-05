@@ -10,7 +10,6 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -38,8 +37,8 @@ namespace APKHelper
             CacheData.Ins.windows=this;
             UIHelper.GetAppWindowForCurrentWindow(this).SetIcon("favicon.ico");
             IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-            Graphics graphics = Graphics.FromHwnd(hwnd);
-            SetWindowSize(hwnd, 682, 414);
+            //Graphics graphics = Graphics.FromHwnd(hwnd);
+            SetWindowSize(hwnd, 640, 420);
             UIHelper.MainWindow = this;
             MainPage mainPage = new();
             EnableMica(hwnd, true);

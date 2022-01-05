@@ -12,14 +12,6 @@
     <PackageIcon>256x256.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
-    <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
-      <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>4</VersionMinor>
-      <VersionMajor>2</VersionMajor>
-      <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="favicon.ico" />
   </ItemGroup>
 
@@ -29,20 +21,18 @@
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Markdown" Version="7.1.2" />
-    <PackageReference Include="MetroLog" Version="1.0.1" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
     <PackageReference Include="PInvoke.User32" Version="0.7.104" />
     <PackageReference Include="PortableDownloader" Version="1.3.24" />
-    <PackageReference Include="QueryString.NET" Version="1.0.0" />
     <PackageReference Include="SharpCompress" Version="0.30.1" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APKServer\APKServer.csproj" />
+    <ProjectReference Include="..\..\APKHelper\APKServer\APKServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

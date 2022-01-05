@@ -63,6 +63,11 @@
             <uap:InfoTip>ms-resource:APKDescription</uap:InfoTip>
           </uap:FileTypeAssociation>
         </uap:Extension>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="apkhelper">
+            <uap:Logo>Images\StoreLogo.backup.png</uap:Logo>
+          </uap:Protocol>
+        </uap:Extension>
       </Extensions>
     </Application>
   </Applications>

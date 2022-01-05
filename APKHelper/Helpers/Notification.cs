@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using Microsoft.Toolkit.Uwp.Notifications; // Notifications library
-using Microsoft.QueryStringDotNET;
 using Windows.Storage;
 
 namespace APKHelper.Helpers
@@ -22,133 +21,69 @@ namespace APKHelper.Helpers
 
         public static void send(string title, string content, string icon = null)
         {
-            LoadVisual(title, content+ logo, icon); 
-            LoadActions(); 
-            LoadContent();
+            string image = "https://picsum.photos/364/202?image=883";
+            int conversationId = 5;
+            new ToastContentBuilder()
 
-            // And create the toast notification
-            var toast = new ToastNotification(toastContent.GetXml());
+              // Arguments that are returned when the user clicks the toast or a button
+              .AddArgument("action", MyToastActions.ViewConversation)
+              .AddArgument("conversationId", conversationId)
 
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+              // Visual content
+              .AddText(title)
+              .AddText(content)
+              .AddInlineImage(new Uri("https://i.bmp.ovh/imgs/2022/01/43070c2529bf6841.jpg"))
+              .AddAppLogoOverride(new Uri("https://unsplash.it/64?image=1005"), ToastGenericAppLogoCrop.Circle)
+
+              // Text box for typing a reply
+              .AddInputTextBox("tbReply", "Type a reply")
+
+              // Buttons
+              .AddButton(new ToastButton()
+                  .SetContent("Reply")
+                  .AddArgument("action", MyToastActions.Reply)
+                  .SetBackgroundActivation())
+
+              .AddButton(new ToastButton()
+                  .SetContent("Like")
+                  .AddArgument("action", MyToastActions.Like)
+                  .SetBackgroundActivation())
+
+              .AddButton(new ToastButton()
+                  .SetContent("View")
+                  .AddArgument("action", MyToastActions.ViewImage)
+                  .AddArgument("imageUrl", image))
+
+              // And show the toast!
+              .Show();
+
+
         }
         
-        static void LoadVisual(string title, string content, string icon = null)
-        {
-            // In a real app, these would be initialized with actual data
-             image = "https://i.bmp.ovh/imgs/2022/01/43070c2529bf6841.jpg";
-             logo = ApplicationData.Current.LocalFolder.Path + @"/SplashScreen.scale-240.png";
+      
 
-            // Construct the visuals of the toast
-            visual = new ToastVisual()
-            {
-                BindingGeneric = new ToastBindingGeneric()
-                {
-                    Children =
-                    {
-                        new AdaptiveText()
-                        {
-                            Text = title
-                        },
+    }
 
-                        new AdaptiveText()
-                        {
-                            Text = content
-                        },
+    public enum MyToastActions
+    {
+        /// <summary>
+        /// View the conversation
+        /// </summary>
+        ViewConversation,
 
-                        new AdaptiveImage()
-                        {
-                            Source = image
-                        }
-                    },
+        /// <summary>
+        /// Inline reply to a message
+        /// </summary>
+        Reply,
 
-                    AppLogoOverride = new ToastGenericAppLogo()
-                    {
-                        Source = logo,
-                        HintCrop = ToastGenericAppLogoCrop.Circle
-                    }
-                }
-            };
+        /// <summary>
+        /// Like a message
+        /// </summary>
+        Like,
 
-        }
-
-        static void LoadActions()
-        {
-            // In a real app, these would be initialized with actual data
-            conversationId = 384928;
-
-            // Construct the actions for the toast (inputs and buttons)
-             actions = new ToastActionsCustom()
-            {
-                Inputs =
-                    {
-                        new ToastTextBox("tbReply")
-                        {
-                            PlaceholderContent = "Type a response"
-                        }
-                    },
-
-                Buttons =
-                    {
-                        new ToastButton("Reply", new QueryString()
-                        {
-                            { "action", "reply" },
-                            { "conversationId", conversationId.ToString() }
-
-                        }.ToString())
-                        {
-                            ActivationType = ToastActivationType.Background,
-                            ImageUri = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary + @"/logo.png",
- 
-                            // Reference the text box's ID in order to
-                            // place this button next to the text box
-                            TextBoxId = "tbReply"
-                        },
-
-                        new ToastButton("Like", new QueryString()
-                        {
-                            { "action", "like" },
-                            { "conversationId", conversationId.ToString() }
-
-                        }.ToString())
-                        {
-                            ActivationType = ToastActivationType.Background
-                        },
-
-                        new ToastButton("View", new QueryString()
-                        {
-                            { "action", "viewImage" },
-                            { "imageUrl", image }
-
-                        }.ToString())
-                    }
-            };
-        }
-
-        static void LoadContent()
-        {
-            // Now we can construct the final toast content
-             toastContent = new ToastContent()
-            {
-                Visual = visual,
-                Actions = actions,
-
-                // Arguments when the user taps body of toast
-                Launch = new QueryString()
-                    {
-                        { "action", "viewConversation" },
-                        { "conversationId", conversationId.ToString() }
-
-                    }.ToString()
-            };
-
-            // And create the toast notification
-            var toast = new ToastNotification(toastContent.GetXml());
-
-            toast.ExpirationTime = System.DateTime.Now.AddDays(2);
-            toast.Tag = "18365";
-            toast.Group = "wallPosts";
-
-        }
-
+        /// <summary>
+        /// View the image included in the message
+        /// </summary>
+        ViewImage
     }
 }
