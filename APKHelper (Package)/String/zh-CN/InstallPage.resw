@@ -188,7 +188,7 @@
     <value>好的</value>
   </data>
   <data name="OpenAPKFile" xml:space="preserve">
-    <value>打开APK文件 Preview</value>
+    <value>浏览APK文件</value>
   </data>
   <data name="PackageNameFormat" xml:space="preserve">
     <value>包名称: {0}</value>

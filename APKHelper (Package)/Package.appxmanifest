@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="d7b767d3-8fd5-426c-a6d2-1524289ff81d"
-    Publisher="CN=Jomalone"
-    Version="1.0.0.0" />
+    Name="51456GRIDGAME.APKForWin11"
+    Publisher="CN=66E7ED19-E526-413D-8461-EAFDD0262435"
+    Version="1.2022.106.0" />
 
   <Properties>
-    <DisplayName>APKHelper</DisplayName>
-    <PublisherDisplayName>Jomalone</PublisherDisplayName>
+    <DisplayName>ms-resource:AppName</DisplayName>
+    <PublisherDisplayName>An APK Installer for WSA</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,25 +31,25 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="APKHelper"
-        Description="Apk File Installer"
+        DisplayName="ms-resource:AppName"
+        Description="ms-resource:AppDescription"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\Square310x310Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo"/>
             <uap:ShowOn Tile="wide310x150Logo"/>
             <uap:ShowOn Tile="square310x310Logo"/>
           </uap:ShowNameOnTiles>
         </uap:DefaultTile >
-        <uap:SplashScreen Image="Images\SplashScreen.png" />
+        <uap:SplashScreen Image="Images\SplashScreen.png"  BackgroundColor="transparent"/>
         <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portraitFlipped"/>
           <uap:Rotation Preference="landscape"/>
           <uap:Rotation Preference="portrait"/>
           <uap:Rotation Preference="landscapeFlipped"/>
-          <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
-        <uap:LockScreen BadgeLogo="Images\256x256.png" Notification="badge"/>
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.fileTypeAssociation">
@@ -59,14 +59,9 @@
             </uap:SupportedFileTypes>
             <uap:DisplayName>APK File</uap:DisplayName>
             <uap:Logo>Images\256x256.png</uap:Logo>
-            <uap:EditFlags OpenIsSafe="true"/>
             <uap:InfoTip>ms-resource:APKDescription</uap:InfoTip>
+            <uap:EditFlags OpenIsSafe="true"/>
           </uap:FileTypeAssociation>
-        </uap:Extension>
-        <uap:Extension Category="windows.protocol">
-          <uap:Protocol Name="apkhelper">
-            <uap:Logo>Images\StoreLogo.backup.png</uap:Logo>
-          </uap:Protocol>
         </uap:Extension>
       </Extensions>
     </Application>
@@ -74,5 +69,6 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClient"/>
   </Capabilities>
 </Package>

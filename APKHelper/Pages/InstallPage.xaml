@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:APKHelper.Controls"
-    xmlns:converter="using:APKHelper.Helpers.ValueConverters"
+
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helper="using:APKHelper.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -322,7 +322,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1"  Margin="24 0 24 3">
-                <Button x:Name="btnOpenFile" Visibility="{Binding !IsInstalling, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Center" Content="{Binding OpenAPKFileText}" Click="btnOpenApkFile_Click"></Button>
+                <Button x:Name="btnOpenFile" Visibility="{Binding !IsInstalling, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"  Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Content="{Binding OpenAPKFileText}" Click="btnOpenApkFile_Click"></Button>
             </Grid>
 
             <Grid  Grid.Row="2" Margin="24 0 24 3">

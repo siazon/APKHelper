@@ -754,7 +754,7 @@ namespace APKHelper.ViewModels
                     _ = Task.Run(async () =>
                     {
                         await Task.Delay(1000);// 据说如果安装完直接启动会崩溃。。。
-                        Notification.send("安装成功", "请开始在PC上使用安卓APP吧！");
+                       // Notification.send("安装成功", "请开始在PC上使用安卓APP吧！");
                         OpenAPP();
                     });
                 }
