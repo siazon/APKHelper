@@ -8,7 +8,6 @@
     mc:Ignorable="d">
     <Grid
         x:Name="TitleGrid"
-        Height="{x:Bind helper:UIHelper.PageTitleHeight}"
         VerticalAlignment="Top"
         Tapped="TitleGrid_Tapped">
         <Grid.ChildrenTransitions>

@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="APKUWPHelper.Pages.ToolsPages.ApplicationsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="using:APKUWPHelper.Controls"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:APKUWPHelper.Pages.ToolsPages"
+    xmlns:helper="using:APKUWPHelper.Helpers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <local:ApplicationConverter x:Key="ApplicationConverter" />
+    </Page.Resources>
+    <Grid>
+        <controls:DataGrid
+            x:Name="ApplicationDataGrid"
+            Margin="{x:Bind helper:UIHelper.ScrollViewerMargin}"
+            Padding="{x:Bind helper:UIHelper.ScrollViewerPadding}"
+            AutoGenerateColumns="False"
+            CanUserReorderColumns="True"
+            CanUserResizeColumns="True"
+            CanUserSortColumns="True"
+            IsReadOnly="True"
+            ItemsSource="{x:Bind Applications, Mode=OneWay}"
+            RightTapped="DataGrid_RightTapped">
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout x:Name="MenuFlyout">
+                    <MenuFlyoutItem x:Name="Actions" Click="MenuFlyoutItem_Click" />
+                    <!--<MenuFlyoutItem Text="Uninstall" Tag="Uninstall" Click="MenuFlyoutItem_Click"/>-->
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn
+                    Binding="{Binding Name}"
+                    Header="Name"
+                    Tag="Name" />
+                <controls:DataGridTextColumn
+                    Binding="{Binding VersionInfo.VersionName}"
+                    Header="Version"
+                    Tag="Version" />
+                <controls:DataGridTextColumn
+                    Binding="{Binding IsActive, Converter={StaticResource ApplicationConverter}, ConverterParameter='State'}"
+                    Header="State"
+                    Tag="State" />
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+        <Controls:TitleBar
+            x:Name="TitleBar"
+            Title="Applications"
+            BackRequested="TitleBar_BackRequested"
+            BackgroundVisibility="Visible"
+            IsBackEnable="{x:Bind Frame.CanGoBack}"
+            RefreshButtonVisibility="Visible"
+            RefreshEvent="TitleBar_RefreshEvent">
+            <Controls:TitleBar.RightAreaContent>
+                <ComboBox
+                    x:Name="DeviceComboBox"
+                    VerticalAlignment="Center"
+                    ItemsSource="{x:Bind DeviceList, Mode=OneWay}"
+                    PlaceholderText="Waiting for Device..."
+                    SelectionChanged="ComboBox_SelectionChanged" />
+            </Controls:TitleBar.RightAreaContent>
+        </Controls:TitleBar>
+    </Grid>
+</Page>

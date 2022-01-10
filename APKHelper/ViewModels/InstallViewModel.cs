@@ -614,6 +614,8 @@ namespace APKHelper.ViewModels
             }
             IsInitialized = true;
         }
+
+       
         public void CheckAPK()
         {
             ResetUI();
