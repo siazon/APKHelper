@@ -1,6 +1,10 @@
-﻿using APKHelper.Helpers;
+﻿using APKCommon;
+using APKHelper.Helpers;
 using APKHelper.Pages.SettingsPages;
+using APKHelper.ViewModels;
 using CommunityToolkit.WinUI.Helpers;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -18,10 +22,14 @@ namespace APKHelper.Pages
     public sealed partial class MainPage : Page
     {
         private bool HasBeenSmail;
-
+      
         public MainPage()
         {
             InitializeComponent();
+
+            NavigationService.Frame = MainFrame;
+            MainViewModel Provider = new MainViewModel(this);
+            DataContext = Provider;
             UIHelper.MainPage = this;
             UIHelper.DispatcherQueue = DispatcherQueue.GetForCurrentThread();
             if (UIHelper.HasTitleBar)
@@ -36,7 +44,9 @@ namespace APKHelper.Pages
                 UIHelper.CheckTheme();
             }
             UIHelper.MainWindow.SetTitleBar(CustomTitleBar);
-            _ = CoreAppFrame.Navigate(typeof(InstallPage));
+            _ = MainFrame.Navigate(typeof(InstallPage));
+
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,7 +54,7 @@ namespace APKHelper.Pages
             switch ((sender as FrameworkElement).Name)
             {
                 case "AboutButton":
-                    _ = CoreAppFrame.Navigate(typeof(SettingsPage));
+                    _ = NavigationService.Frame.Navigate(typeof(SettingsPage));
                     break;
                 default:
                     break;
@@ -74,6 +84,37 @@ namespace APKHelper.Pages
                 }
             }
             catch { }
+        }
+
+        private void NavigationViewControl_PaneOpened(NavigationView sender, object args)
+        {
+
+            UpdateAppTitleMargin(sender);
+        }
+
+        private void NavigationViewControl_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
+        {
+            UpdateAppTitleMargin(sender);
+        }
+        private void UpdateAppTitleMargin(NavigationView sender)
+        {
+            const int smallLeftIndent = 0, largeLeftIndent = 34;
+
+            AppTitle.TranslationTransition = new Vector3Transition();
+
+            if (sender.IsPaneOpen == false && (sender.DisplayMode == NavigationViewDisplayMode.Expanded ||
+                sender.DisplayMode == NavigationViewDisplayMode.Compact))
+            {
+                AppTitle.Translation = new System.Numerics.Vector3(largeLeftIndent, 0, 0);
+            }
+            else
+            {
+                AppTitle.Translation = new System.Numerics.Vector3(smallLeftIndent, 0, 0);
+            }
+        }
+        private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+        {
+
         }
     }
 }

@@ -255,7 +255,18 @@ namespace APKHelper.ViewModels
             get => _actionVisibility;
             set
             {
+               
                 _actionVisibility = value;
+                RaisePropertyChangedEvent();
+            }
+        }
+        private Visibility _nonactionVisibility;
+        public Visibility NonActionVisibility
+        {
+            get => _nonactionVisibility;
+            set
+            {
+                _nonactionVisibility = value;
                 RaisePropertyChangedEvent();
             }
         }
@@ -310,6 +321,10 @@ namespace APKHelper.ViewModels
             get => _appVersionVisibility;
             set
             {
+                if (value == Visibility.Visible)
+                    NonActionVisibility = Visibility.Collapsed;
+                else
+                    NonActionVisibility = Visibility.Visible;
                 _appVersionVisibility = value;
                 RaisePropertyChangedEvent();
             }
@@ -618,6 +633,10 @@ namespace APKHelper.ViewModels
        
         public void CheckAPK()
         {
+            try
+            {
+
+           
             ResetUI();
             AdvancedAdbClient client = new AdvancedAdbClient();
             if (_device == null)
@@ -660,6 +679,11 @@ namespace APKHelper.ViewModels
                 AppName = string.Format(_loader.GetString("ReinstallFormat"), ApkInfo.AppName);
                 TextOutput = string.Format(_loader.GetString("ReinstallOutput"), ApkInfo.AppName);
                 ActionVisibility = SecondaryActionVisibility = TextOutputVisibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
@@ -689,6 +713,10 @@ namespace APKHelper.ViewModels
 
         private void OnDeviceChanged(object sender, DeviceDataEventArgs e)
         {
+            try
+            {
+
+            
             if (IsOnlyWSA)
             {
                 new AdvancedAdbClient().Connect(new DnsEndPoint("127.0.0.1", 58526));
@@ -702,6 +730,12 @@ namespace APKHelper.ViewModels
                         CheckAPK();
                     }
                 });
+            }
+            }
+            catch (Exception ex)
+            {
+
+
             }
         }
 
@@ -763,6 +797,7 @@ namespace APKHelper.ViewModels
                 IsInstalling = false;
                 SecondaryActionVisibility = Visibility.Visible;
                 SecondaryActionButtonText = _loader.GetString("Launch");
+                NonActionVisibility = Visibility.Visible;
                 CancelOperationVisibility = LaunchWhenReadyVisibility = Visibility.Collapsed;
             }
             catch (Exception ex)

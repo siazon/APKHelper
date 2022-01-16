@@ -37,8 +37,41 @@ namespace APKHelper
             this.InitializeComponent();
             UnhandledException += Application_UnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Getdll();
         }
+        public Type Getdll()
+        {
+            Type type = null;
+            var document = System.Xml.Linq.XDocument.Load($"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)}/Products.xml");
+            string path = $"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)}/APK.Datagrid.dll";
 
+
+            var AllProducts = from AllProduct in document.Descendants("Assemblies") select AllProduct;
+            foreach (var assembly in AllProducts)
+            {
+                var qualifiedInfo = assembly.Attribute("QualifiedInfo").Value;
+                var className = assembly.Attribute("ConfigurationFile").Value;
+                var products = from product in document.Descendants("Assembly") select product;
+
+                foreach (var item in products)
+                {
+                    System.Reflection.Assembly asm = System.Reflection.Assembly.LoadFile(path);
+                    var name = item.Attribute("Name").Value;
+                    string className1 = $"{name}.{className}";
+                    var assemblyQualifiedInfo = $"{name}.{className},{name},{qualifiedInfo}";
+                    type = asm.GetType(className1);
+                    if (type != null)
+                    {
+                        //Activator.CreateInstance(type);
+
+
+                        //获取类
+                       // type = asm.GetType(name + ".TestPage");
+                    }
+                }
+            }
+            return type;
+        }
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.

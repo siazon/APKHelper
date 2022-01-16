@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>APK.Datagrid</RootNamespace>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <UseWinUI>true</UseWinUI>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModel\EmployeeViewModel.cs" />
+    <Compile Remove="ViewModel\OrderInfoViewModel.cs" />
+    <Compile Remove="ViewModel\PersonViewModel.cs" />
+    <Compile Remove="ViewModel\SalesViewModel.cs" />
+    <Compile Remove="Views\AdvanceFilter.xaml.cs" />
+    <Compile Remove="Views\ClipboardOperation.xaml.cs" />
+    <Compile Remove="Views\ContextFlyout.xaml.cs" />
+    <Compile Remove="Views\CustomValidation.xaml.cs" />
+    <Compile Remove="Views\DataValidation.xaml.cs" />
+    <Compile Remove="Views\Editing.xaml.cs" />
+    <Compile Remove="Views\FreezePanes.xaml.cs" />
+    <Compile Remove="Views\GettingStarted.xaml.cs" />
+    <Compile Remove="Views\Grouping.xaml.cs" />
+    <Compile Remove="Views\MasterDetailsView.xaml.cs" />
+    <Compile Remove="Views\Printing.xaml.cs" />
+    <Compile Remove="Views\Selection.xaml.cs" />
+    <Compile Remove="Views\Serialization.xaml.cs" />
+    <Compile Remove="Views\Sorting.xaml.cs" />
+    <Compile Remove="Views\StackedHeader.xaml.cs" />
+    <Compile Remove="Views\Summaries.xaml.cs" />
+    <Compile Remove="Views\UnboundRows.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="App.xaml" />
+    <None Remove="TestPage.xaml" />
+    <None Remove="Views\AdvanceFilter.xaml" />
+    <None Remove="Views\ClipboardOperation.xaml" />
+    <None Remove="Views\ContextFlyout.xaml" />
+    <None Remove="Views\CustomValidation.xaml" />
+    <None Remove="Views\DataValidation.xaml" />
+    <None Remove="Views\Editing.xaml" />
+    <None Remove="Views\FreezePanes.xaml" />
+    <None Remove="Views\GettingStarted.xaml" />
+    <None Remove="Views\Grouping.xaml" />
+    <None Remove="Views\MasterDetailsView.xaml" />
+    <None Remove="Views\Printing.xaml" />
+    <None Remove="Views\Selection.xaml" />
+    <None Remove="Views\Serialization.xaml" />
+    <None Remove="Views\Sorting.xaml" />
+    <None Remove="Views\StackedHeader.xaml" />
+    <None Remove="Views\Summaries.xaml" />
+    <None Remove="Views\UnboundRows.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="App.xaml" />
+    <Page Remove="Views\AdvanceFilter.xaml" />
+    <Page Remove="Views\ClipboardOperation.xaml" />
+    <Page Remove="Views\ContextFlyout.xaml" />
+    <Page Remove="Views\CustomValidation.xaml" />
+    <Page Remove="Views\DataValidation.xaml" />
+    <Page Remove="Views\Editing.xaml" />
+    <Page Remove="Views\FreezePanes.xaml" />
+    <Page Remove="Views\GettingStarted.xaml" />
+    <Page Remove="Views\Grouping.xaml" />
+    <Page Remove="Views\MasterDetailsView.xaml" />
+    <Page Remove="Views\Printing.xaml" />
+    <Page Remove="Views\Selection.xaml" />
+    <Page Remove="Views\Serialization.xaml" />
+    <Page Remove="Views\Sorting.xaml" />
+    <Page Remove="Views\StackedHeader.xaml" />
+    <Page Remove="Views\Summaries.xaml" />
+    <Page Remove="Views\UnboundRows.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
+      <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\APKCommon\APKCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\TestPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

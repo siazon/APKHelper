@@ -322,9 +322,8 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1"  Margin="24 0 24 3">
-                <Button x:Name="btnOpenFile" Visibility="{Binding !IsInstalling, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"  Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Content="{Binding OpenAPKFileText}" Click="btnOpenApkFile_Click"></Button>
+                <Button x:Name="btnOpenFile"     Visibility="{Binding NonActionVisibility}"  Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" Content="{Binding OpenAPKFileText}" Click="btnOpenApkFile_Click"></Button>
             </Grid>
-
             <Grid  Grid.Row="2" Margin="24 0 24 3">
                 
             </Grid>

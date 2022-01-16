@@ -163,7 +163,7 @@
             </StackPanel>
         </ScrollViewer>
         <controls:TitleBar
-            x:Name="TitleBar"
+            x:Name="TitleBar" 
             x:Uid="/SettingsPage/TitleBar"
             BackRequested="TitleBar_BackRequested"
             BackgroundVisibility="Visible"

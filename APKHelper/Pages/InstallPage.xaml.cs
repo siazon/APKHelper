@@ -43,6 +43,7 @@ namespace APKHelper.Pages
                 default:
                     break;
             }
+            if(Provider==null)
             Provider = new InstallViewModel(_path, this);
             DataContext = Provider;
         }
@@ -55,7 +56,7 @@ namespace APKHelper.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            switch ((sender as FrameworkElement).Name)
+           switch ((sender as FrameworkElement).Name)
             {
                 case "ActionButton":
                     Provider.InstallAPP();

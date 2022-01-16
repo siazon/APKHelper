@@ -1,4 +1,5 @@
 ﻿using AdvancedSharpAdbClient;
+using APKCommon;
 using APKHelper.Pages;
 using CommunityToolkit.WinUI;
 using Microsoft.UI;
@@ -82,7 +83,7 @@ namespace APKHelper.Helpers
         {
             DispatcherQueue.EnqueueAsync(() =>
             {
-                _ = (MainPage?.CoreAppFrame.Navigate(pageType, e, TransitionInfo));
+                _ = (NavigationService.Frame.Navigate(pageType, e, TransitionInfo));
             });
         }
 

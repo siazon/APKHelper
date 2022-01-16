@@ -13,6 +13,9 @@
     <SupportedOSPlatformVersion>10.0.20348.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\SettingsPages\WebViewPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="favicon.ico" />
   </ItemGroup>
 
@@ -22,6 +25,7 @@
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Markdown" Version="7.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.2" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
@@ -34,6 +38,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\APKHelper\APKServer\APKServer.csproj" />
+    <ProjectReference Include="..\APK.Datagrid\APK.Datagrid.csproj" />
+    <ProjectReference Include="..\APKCommon\APKCommon.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -202,6 +208,12 @@
     <None Update="Assets\256x256.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+    </None>
+    <Page Update="Pages\SettingsPages\WebViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <None Update="Products.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

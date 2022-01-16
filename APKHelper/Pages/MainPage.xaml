@@ -5,9 +5,86 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helper="using:APKHelper.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:local="using:APKHelper.Pages"
+    xmlns:controlhelper="using:APKCommon"
     NavigationCacheMode="Enabled"
     SizeChanged="Page_SizeChanged"
     mc:Ignorable="d">
+    <Page.Resources>
+
+
+        <DataTemplate x:Key="HeaderTemplate">
+            <NavigationViewItemHeader Content="{Binding Name}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ControlItemTemplate" x:DataType="controlhelper:ControlInfo">
+            <NavigationViewItem>
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="ms-appx:///syncfusion.demoscommon.winui/Assets/ControlIcons.ttf#ControlIcons"
+                                              Glyph="{x:Bind Glyph}"/>
+                </NavigationViewItem.Icon>
+                <NavigationViewItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="{x:Bind Name}"
+                                   VerticalAlignment="Center"
+                                   TextLineBounds="TrimToCapHeight"
+                                   TextWrapping="NoWrap"/>
+                        <!--<syncfusion:SfBadge Grid.Column="1"
+                                            Shape="Rectangle"
+                                            Fill="Accent"
+                                            Content="{x:Bind Badge}" 
+                                            Visibility="{x:Bind Badge, Converter={StaticResource nullToCollapseConverter}}">
+                        </syncfusion:SfBadge>-->
+                    </Grid>
+                </NavigationViewItem.Content>
+            </NavigationViewItem>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DemoItemTemplate" x:DataType="controlhelper:DemoInfo">
+            <NavigationViewItem>
+                <NavigationViewItem.ContentTemplate>
+                    <DataTemplate x:DataType="controlhelper:DemoInfo">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1"
+                                   Text="{x:Bind Name}"
+                                   VerticalAlignment="Center"
+                                   TextLineBounds="TrimToCapHeight"
+                                   TextWrapping="NoWrap"/>
+                            <!--<syncfusion:SfBadge Grid.Column="2"
+                                            Shape="Rectangle"
+                                            Fill="Accent"
+                                            Content="{x:Bind Badge}"
+                                            Visibility="{x:Bind Badge, Converter={StaticResource nullToCollapseConverter}}">
+                            </syncfusion:SfBadge>-->
+                        </Grid>
+                    </DataTemplate>
+                </NavigationViewItem.ContentTemplate>
+            </NavigationViewItem>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CategoryItemTemplate" x:DataType="controlhelper:CategoryGroup">
+            <NavigationViewItemHeader Content="{Binding Category}"/>
+        </DataTemplate>
+        <controlhelper:NavigationItemTemplateSelector x:Key="navigationItemTemplateSelector"
+                                              DemoItemTemplate="{StaticResource DemoItemTemplate}"
+                                              ControlItemTemplate="{StaticResource ControlItemTemplate}"
+                                              CategoryItemTemplate="{StaticResource CategoryItemTemplate}"
+                                              HeaderTemplate="{StaticResource HeaderTemplate}"/>
+        <DataTemplate x:Key="NavigationViewHeaderTemplate">
+            <TextBlock Text="{Binding}" Margin="-33,0,0,0" />
+        </DataTemplate>
+    </Page.Resources>
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -26,8 +103,9 @@
             HorizontalAlignment="Left"
             Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
             Visibility="{x:Bind helper:UIHelper.HasTitleBar}" />
-        <Button
-            x:Name="AboutButton"
+       
+        <!--<Button 
+            x:Name="AboutButton" 
             Grid.Row="1"
             Width="28"
             Height="28"
@@ -54,6 +132,61 @@
             x:Name="CoreAppFrame"
             Grid.Row="2"
             x:FieldModifier="Public"
-            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />-->
+        <TextBlock x:Name="AppTitle" 
+                       VerticalAlignment="Top"
+                       Margin="10,8,0,0"
+                       Style="{StaticResource CaptionTextBlockStyle}" />
+        <NavigationView Canvas.ZIndex="0"   Margin="0 0 0 0"   Grid.Row="1" Grid.RowSpan="2"
+                        x:Name="NavigationViewControl" 
+                        IsBackEnabled="False"  
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="True"
+                        PaneOpening="NavigationViewControl_PaneOpened"
+                        PaneClosing="NavigationViewControl_PaneClosing"
+                        DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                        AlwaysShowHeader="{Binding IsHeaderVisible, Mode=TwoWay}"
+                        Header="{Binding Header, Mode=TwoWay}"
+                        HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
+                        IsTabStop="False"
+                        MenuItemsSource="{Binding MenuItems,Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        MenuItemTemplateSelector="{StaticResource navigationItemTemplateSelector}">
+            <!--<NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                       PlaceholderText ="{Binding SearchString}"
+                       TextMemberPath="Name" >
+                </AutoSuggestBox>
+            </NavigationView.AutoSuggestBox>-->
+            <NavigationView.PaneCustomContent>
+                <StackPanel>
+                    <ListView x:Name="menuList" SelectionMode="Single"
+                              SingleSelectionFollowsFocus="False"
+                              ItemsSource="{Binding RootMenuItems, Mode=TwoWay}"
+                              SelectedItem="{Binding SelectedRootMenuItem, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Left"
+                                      Height="40"
+                                      Margin="-16,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="48" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Grid.Column="0"
+                                              FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                              Glyph="{Binding Icon}" />
+                                    <TextBlock Text="{Binding Name}"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <NavigationViewItemSeparator />
+                </StackPanel>
+            </NavigationView.PaneCustomContent>
+            <Frame Name="MainFrame" IsNavigationStackEnabled="False" />
+        </NavigationView>
     </Grid>
 </Page>
