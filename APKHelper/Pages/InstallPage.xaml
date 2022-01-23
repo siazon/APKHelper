@@ -12,7 +12,7 @@
     d:DataContext="{d:DesignInstance Type=viewmodels:InstallViewModel}"
     NavigationCacheMode="Enabled"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Background="White">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition />
@@ -309,14 +309,14 @@
                         ToolTipService.ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Content}"
                         UseSystemFocusVisuals="True"
                         Visibility="{Binding LaunchWhenReadyVisibility}" />
-                    <StackPanel
+                    <StackPanel 
                         x:Name="TermsAndConditionsGrid"
-                        Grid.Row="2"
-                        Visibility="Collapsed">
-                        <HyperlinkButton
+                        Grid.Row="2" 
+                        Visibility="Visible">
+                        <HyperlinkButton 
                             x:Name="MoreDetailsHyperLink"
-                            HorizontalAlignment="Center"
-                            Content="See more"
+                            HorizontalAlignment="Left"
+                            Content="See more" Click="MoreDetailsHyperLink_Click"
                             ToolTipService.ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Content}" />
                     </StackPanel>
                 </Grid>

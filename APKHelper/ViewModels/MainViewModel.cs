@@ -75,6 +75,17 @@ namespace APKHelper.ViewModels
                 RaisePropertyChanged(nameof(AppTitleText));
             }
         }
+        private Visibility _actionVisibility;
+        public Visibility ActionVisibility
+        {
+            get => _actionVisibility;
+            set
+            {
+
+                _actionVisibility = value;
+                RaisePropertyChanged(nameof(ActionVisibility));
+            }
+        }
 
         private DemoInfo demoInfo;
         public DemoInfo DemoInfo
@@ -123,6 +134,7 @@ namespace APKHelper.ViewModels
         }
         public bool IsSectionHeaderVisible { get; set; }
         public string SectionHeader { get; set; }
+        private readonly ResourceLoader _loader = ResourceLoader.GetForViewIndependentUse("InstallPage");
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -130,48 +142,48 @@ namespace APKHelper.ViewModels
         {
             if (name != null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name)); }
         }
-
+        MainPage _page;
         // TODO: 仅当“Dispose(bool disposing)”拥有用于释放未托管资源的代码时才替代终结器
         public MainViewModel(MainPage Page)
         {
-
+            _page=Page;
             // 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
             // Dispose(disposing: false);
             InitiateDefaultValues();
         }
         private void InitiateDefaultValues()
         {
-            RootMenuItems.Add(new BrowserModel() { Content = Constants.Home, Name = Constants.Home, Icon = "\uE10F" });
+            RootMenuItems.Add(new BrowserModel() { Content = _loader.GetString("HomePage"), Name = _loader.GetString("HomePage"), Icon = "\uE10F" });
             if (DemoHelper.ShowCaseDemos.Count > 0)
                 RootMenuItems.Add(new BrowserModel() { Content = Constants.Showcase, Name = Constants.Showcase, Icon = "\uE722" });
 
-            RootMenuItems.Add(new BrowserModel() { Content = Constants.AllControls, Name = Constants.AllControlsName, Icon = "\uE8FD" });
+            RootMenuItems.Add(new BrowserModel() { Content = _loader.GetString("WebPage"), Name = _loader.GetString("WebPage"), Icon = "\uE8FD" });
 
             if (DemoHelper.WhatsNewDemos.Count > 0)
                 RootMenuItems.Add(new BrowserModel() { Content = Constants.WhatsNew, Name = Constants.WhatsNewName, Icon = "\uE789" });
 
             this.MenuItems = DemoHelper.ControlInfos;
         }
+    
         private void RootMenuItemSelectionChanged()
         {
-            Type type = Getdll();
+            //Type type = Getdll();
             if (this.SelectedRootMenuItem == null)
             {
                 return;
             }
-
             this.IsThemeVisible = false;
             this.SelectedItem = null;
             this.DemoInfo = null;
 
             var selectedItem = this.SelectedRootMenuItem as BrowserModel;
-            if (selectedItem.Content.ToString() == Constants.Home)
+            if (selectedItem.Content.ToString() == _loader.GetString("HomePage"))
             {
                 this.SectionHeader = Constants.Home;
                 this.IsHeaderVisible = false;
-                NavigationService.Frame.Navigate(typeof(InstallPage), this);
+                NavigationService.Frame.Navigate(typeof(ApplicationsPage), this);
             }
-           else if (selectedItem.Content.ToString() == Constants.Showcase)
+           else if (selectedItem.Content.ToString() == _loader.GetString("WebPage"))
             {
                 this.SectionHeader = Constants.Showcase;
                 this.IsHeaderVisible = false;
@@ -188,7 +200,7 @@ namespace APKHelper.ViewModels
         }
         private void OnNavigationSelectionChanged()
         {
-            Type type = Getdll();
+            //Type type = Getdll();
 
 
             if (this.SelectedItem == null)
@@ -201,7 +213,8 @@ namespace APKHelper.ViewModels
                 this.IsThemeVisible = false;
                 this.Header = controlInfo.Name;
                 //this.IsHeaderVisible = true;
-                NavigationService.Frame.Navigate(typeof(ApplicationsPage), this);
+                NavigationService.Frame.Navigate(typeof(ApplicationsPage));
+
             }
             else if (this.SelectedItem is DemoInfo demoInfo)
             {
@@ -209,7 +222,7 @@ namespace APKHelper.ViewModels
                 //this.IsHeaderVisible = true;
                 this.IsThemeVisible = true;
                 this.DemoInfo = demoInfo;
-                NavigationService.Frame.Navigate(typeof(InstallPage), this);
+                NavigationService.Frame.Navigate(typeof(ApplicationsPage), this);
             }
             else if ((this.SelectedItem as NavigationViewItem).Content.ToString() == Constants.Settings|| (this.SelectedItem as NavigationViewItem).Content.ToString()=="设置")
             {

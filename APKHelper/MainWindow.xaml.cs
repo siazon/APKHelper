@@ -29,7 +29,7 @@ namespace APKHelper
     {
         [DllImport("dwmapi.dll")]
         public static extern int DwmSetWindowAttribute(IntPtr hwnd, DwmWindowAttribute dwAttribute, ref int pvAttribute, int cbAttribute);
-
+        MainPage mainPage;
         public MainWindow()
         {
             this.InitializeComponent();
@@ -42,11 +42,14 @@ namespace APKHelper
 
             SetWindowLocation(hwnd, 840, 520);
             UIHelper.MainWindow = this;
-            MainPage mainPage = new();
+             mainPage = new();
             EnableMica(hwnd, true);
             Content = mainPage;
         }
-
+        public void OpenInstallModel(bool isInstall)
+        {
+            mainPage.OpenInstallModel(isInstall);
+        }
         private void Window_Closed(object sender, WindowEventArgs args)
         {
             if (SettingsHelper.Get<bool>(SettingsHelper.IsCloseADB))

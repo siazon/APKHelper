@@ -47,7 +47,7 @@
         </controls:DataGrid>
         <Controls:TitleBar
             x:Name="TitleBar"
-            Title="Applications"
+            Title="{x:Bind Title}"
             BackRequested="TitleBar_BackRequested"
             BackgroundVisibility="Visible"
             IsBackEnable="{x:Bind Frame.CanGoBack}"
@@ -56,7 +56,7 @@
             <Controls:TitleBar.RightAreaContent>
                 <ComboBox
                     x:Name="DeviceComboBox"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Center" SelectedIndex="0"
                     ItemsSource="{x:Bind DeviceList, Mode=OneWay}"
                     PlaceholderText="Waiting for Device..."
                     SelectionChanged="ComboBox_SelectionChanged" />

@@ -81,10 +81,10 @@ namespace APKHelper.Helpers
 
         public static void Navigate(Type pageType, NavigationTransitionInfo TransitionInfo, object e = null)
         {
-            DispatcherQueue.EnqueueAsync(() =>
-            {
-                _ = (NavigationService.Frame.Navigate(pageType, e, TransitionInfo));
-            });
+            //DispatcherQueue.EnqueueAsync(() =>
+            //{
+            //    _ = (Frame.Navigate(pageType, e, TransitionInfo));
+            //});
         }
 
         public static AppWindow GetAppWindowForCurrentWindow(this Window window)

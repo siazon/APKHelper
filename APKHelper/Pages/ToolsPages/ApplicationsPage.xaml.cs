@@ -10,7 +10,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Core;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -45,6 +48,16 @@ namespace APKHelper.Pages.ToolsPages
                 RaisePropertyChangedEvent();
             }
         }
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value;
+                RaisePropertyChangedEvent();
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -55,8 +68,10 @@ namespace APKHelper.Pages.ToolsPages
 
         public ApplicationsPage() => InitializeComponent();
 
+        private readonly ResourceLoader _loader = ResourceLoader.GetForViewIndependentUse("InstallPage");
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            Title = _loader.GetString("AppTitle");
             base.OnNavigatedTo(e);
             await Task.Run(() => _ = DispatcherQueue.TryEnqueue(() =>
             {
@@ -94,10 +109,19 @@ namespace APKHelper.Pages.ToolsPages
                         DeviceList.Add("Device");
                     }
                 }
-                if (DeviceComboBox.SelectedIndex == -1)
+                try
                 {
-                    DeviceComboBox.SelectedIndex = 0;
+                    if (DeviceComboBox.SelectedIndex == -1 && DeviceComboBox.Items.Count > 0)
+                    {
+                        DeviceComboBox.SelectedIndex = 0;
+                    }
                 }
+                catch (Exception ex)
+                {
+
+                }
+              
+
             }
             else if (Applications != null)
             {
@@ -151,11 +175,19 @@ namespace APKHelper.Pages.ToolsPages
 
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TitleBar.ShowProgressRing();
-            int index = DeviceComboBox.SelectedIndex;
-            PackageManager manager = new PackageManager(new AdvancedAdbClient(), devices[DeviceComboBox.SelectedIndex]);
-            Applications = await Task.Run(() => { return CheckAPP(manager.Packages, index); });
-            TitleBar.HideProgressRing();
+            try
+            {
+                TitleBar.ShowProgressRing();
+                int index = DeviceComboBox.SelectedIndex;
+                PackageManager manager = new PackageManager(new AdvancedAdbClient(), devices[DeviceComboBox.SelectedIndex]);
+                Applications = await Task.Run(() => { return CheckAPP(manager.Packages, index); });
+                TitleBar.HideProgressRing();
+            }
+            catch (Exception ex)
+            {
+
+            }
+          
         }
 
         private async void TitleBar_RefreshEvent(object sender, RoutedEventArgs e) => await Refresh();

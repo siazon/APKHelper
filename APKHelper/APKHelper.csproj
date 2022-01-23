@@ -10,7 +10,7 @@
     <UseWinUI>true</UseWinUI>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <PackageIcon>256x256.png</PackageIcon>
-    <SupportedOSPlatformVersion>10.0.20348.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Pages\SettingsPages\WebViewPage.xaml" />
@@ -38,7 +38,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\APKHelper\APKServer\APKServer.csproj" />
-    <ProjectReference Include="..\APK.Datagrid\APK.Datagrid.csproj" />
     <ProjectReference Include="..\APKCommon\APKCommon.csproj" />
   </ItemGroup>
 
@@ -208,6 +207,15 @@
     <None Update="Assets\256x256.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Properties\PublishProfiles\win10-arm64.pubxml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\PublishProfiles\win10-x64.pubxml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\PublishProfiles\win10-x86.pubxml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <Page Update="Pages\SettingsPages\WebViewPage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,4 +1,5 @@
 ﻿using AdvancedSharpAdbClient;
+using APKCommon;
 using APKHelper.Helpers;
 using APKHelper.Models;
 using CommunityToolkit.WinUI;
@@ -117,16 +118,30 @@ namespace APKHelper.Pages.SettingsPages
             //#if DEBUG
             GoToTestPage.Visibility = Visibility.Visible;
             //#endif
-            SelectDeviceBox.SelectionMode = IsOnlyWSA ? ListViewSelectionMode.None : ListViewSelectionMode.Single;
-            if (UpdateDate == DateTime.MinValue) { CheckUpdate(); }
-            ADBHelper.Monitor.DeviceChanged += OnDeviceChanged;
-            DeviceList = new AdvancedAdbClient().GetDevices();
+            try
+            {
+                SelectDeviceBox.SelectionMode = IsOnlyWSA ? ListViewSelectionMode.None : ListViewSelectionMode.Single;
+                if (UpdateDate == DateTime.MinValue) { CheckUpdate(); }
+                ADBHelper.Monitor.DeviceChanged += OnDeviceChanged;
+                DeviceList = new AdvancedAdbClient().GetDevices();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            ADBHelper.Monitor.DeviceChanged -= OnDeviceChanged;
+            try
+            {
+                ADBHelper.Monitor.DeviceChanged -= OnDeviceChanged;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void OnDeviceChanged(object sender, DeviceDataEventArgs e)
@@ -148,14 +163,14 @@ namespace APKHelper.Pages.SettingsPages
                     {
                         flyout_reset.Hide();
                     }
-                    _ = Frame.Navigate(typeof(SettingsPage));
-                    Frame.GoBack();
+                    _ = NavigationService.Frame.Navigate(typeof(SettingsPage));
+                    NavigationService.Frame.GoBack();
                     break;
                 case "Connect":
                     new AdvancedAdbClient().Connect(ConnectIP.Text);
                     break;
                 case "TestPage":
-                    _ = Frame.Navigate(typeof(TestPage));
+                    _ = NavigationService.Frame.Navigate(typeof(TestPage));
                     break;
                 case "FeedBack":
                     _ = Launcher.LaunchUriAsync(new Uri(IssuePath));
@@ -217,9 +232,9 @@ namespace APKHelper.Pages.SettingsPages
 
         private void TitleBar_BackRequested(object sender, RoutedEventArgs e)
         {
-            if (Frame.CanGoBack)
+            if (NavigationService.Frame.CanGoBack)
             {
-                Frame.GoBack();
+                NavigationService.Frame.GoBack();
             }
         }
 

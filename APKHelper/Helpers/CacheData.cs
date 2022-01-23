@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APKHelper.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,6 @@ namespace APKHelper.Helpers
                 return cacheData; }
         }
         public Microsoft.UI.Xaml.Window windows { get; set; }
+        public MainViewModel mainVM { get; set; }
     }
 }

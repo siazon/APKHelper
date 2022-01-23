@@ -129,6 +129,9 @@
   <data name="AppCapabilities.HeadText" xml:space="preserve">
     <value>Capabilities: </value>
   </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Applications</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="FoundWSA" xml:space="preserve">
     <value>WSA Found</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home</value>
   </data>
   <data name="HowToConnect" xml:space="preserve">
     <value>How to connect WSA?</value>
@@ -241,6 +247,9 @@
   <data name="WaitingForInstallFormat" xml:space="preserve">
     <value>Waiting for install {0}</value>
     <comment>{0} - AppName.</comment>
+  </data>
+  <data name="WebPage" xml:space="preserve">
+    <value>Hot</value>
   </data>
   <data name="WSARunning" xml:space="preserve">
     <value>WSA is Running</value>

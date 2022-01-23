@@ -31,15 +31,22 @@ namespace APKHelper.Pages.SettingsPages
         {
             base.OnNavigatedTo(e);
             //#if DEBUG
+            if (Frame.CanGoBack)
+            { }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-        }
+            if (Frame.CanGoBack)
+            { }
+            }
         private void TitleBar_BackRequested(object sender, RoutedEventArgs e)
         {
-
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
     }
 }

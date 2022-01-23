@@ -1,6 +1,7 @@
 ﻿using APKCommon;
 using APKHelper.Helpers;
 using APKHelper.Pages.SettingsPages;
+using APKHelper.Pages.ToolsPages;
 using APKHelper.ViewModels;
 using CommunityToolkit.WinUI.Helpers;
 using Microsoft.Extensions.Hosting;
@@ -22,14 +23,15 @@ namespace APKHelper.Pages
     public sealed partial class MainPage : Page
     {
         private bool HasBeenSmail;
-      
+        public Frame frame;
+        MainViewModel Provider;
         public MainPage()
         {
             InitializeComponent();
-
+            this.Loaded += MainPage_Loaded;
             NavigationService.Frame = MainFrame;
-            MainViewModel Provider = new MainViewModel(this);
-            DataContext = Provider;
+            Provider = new MainViewModel(this);
+            DataContext = CacheData.Ins.mainVM = Provider;
             UIHelper.MainPage = this;
             UIHelper.DispatcherQueue = DispatcherQueue.GetForCurrentThread();
             if (UIHelper.HasTitleBar)
@@ -44,9 +46,13 @@ namespace APKHelper.Pages
                 UIHelper.CheckTheme();
             }
             UIHelper.MainWindow.SetTitleBar(CustomTitleBar);
-            _ = MainFrame.Navigate(typeof(InstallPage));
+            MainFrame.Navigate(typeof(ApplicationsPage));
+            //CoreAppFrame.Navigate(typeof(InstallPage));
+            borInstall.Child = new InstallPage();
+        }
 
-         
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,7 +60,7 @@ namespace APKHelper.Pages
             switch ((sender as FrameworkElement).Name)
             {
                 case "AboutButton":
-                    _ = NavigationService.Frame.Navigate(typeof(SettingsPage));
+                    _ = MainFrame.Navigate(typeof(SettingsPage));
                     break;
                 default:
                     break;
@@ -115,6 +121,13 @@ namespace APKHelper.Pages
         private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
         {
 
+        }
+        public void OpenInstallModel(bool isInstall)
+        {
+            if (isInstall)
+                Provider.ActionVisibility = Visibility.Visible;
+            else
+                Provider.ActionVisibility = Visibility.Collapsed;
         }
     }
 }

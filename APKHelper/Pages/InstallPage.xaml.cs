@@ -24,7 +24,27 @@ namespace APKHelper.Pages
     {
         internal InstallViewModel Provider;
 
-        public InstallPage() => InitializeComponent();
+        public InstallPage() { 
+            InitializeComponent();
+
+#if !DEBUG
+            string _path = string.Empty;
+#else
+            string _path = "";// @"C:\Users\siazon\Downloads\com.tencent.mtt_12.1.5.5044_12155500.apk";
+#endif
+            AppActivationArguments args = AppInstance.GetCurrent().GetActivatedEventArgs();
+            switch (args.Kind)
+            {
+                case ExtendedActivationKind.File:
+                    _path = (args.Data as IFileActivatedEventArgs).Files.First().Path;
+                    break;
+                default:
+                    break;
+            }
+            if (Provider == null)
+                Provider = new InstallViewModel(_path, this);
+            DataContext = Provider;
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -82,6 +102,15 @@ namespace APKHelper.Pages
 
 
             Provider.OpenFile();
+        }
+
+        private  void MoreDetailsHyperLink_Click(object sender, RoutedEventArgs e)
+        {
+            CacheData.Ins.mainVM.ActionVisibility = Visibility.Collapsed;
+
+
+            //var uri = new Uri("myapp2:");
+            //var success = await Windows.System.Launcher.LaunchUriAsync(uri);
         }
     }
    

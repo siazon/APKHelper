@@ -127,8 +127,8 @@
                     Foreground="{StaticResource ApplicationPageBackgroundThemeBrush}"
                     Text="" />
             </StackPanel>
-        </Button>
-        <Frame
+        </Button>-->
+        <!--<Frame
             x:Name="CoreAppFrame"
             Grid.Row="2"
             x:FieldModifier="Public"
@@ -139,7 +139,7 @@
                        Style="{StaticResource CaptionTextBlockStyle}" />
         <NavigationView Canvas.ZIndex="0"   Margin="0 0 0 0"   Grid.Row="1" Grid.RowSpan="2"
                         x:Name="NavigationViewControl" 
-                        IsBackEnabled="False"  
+                        IsBackEnabled="False"   
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="True"
                         PaneOpening="NavigationViewControl_PaneOpened"
@@ -188,5 +188,11 @@
             </NavigationView.PaneCustomContent>
             <Frame Name="MainFrame" IsNavigationStackEnabled="False" />
         </NavigationView>
+        <!--<Frame 
+            x:Name="CoreAppFrame"
+              Grid.Row="2" Grid.RowSpan="2"
+            x:FieldModifier="Public" Visibility="{Binding ActionVisibility}"
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />-->
+        <Border x:Name="borInstall"  Visibility="{Binding ActionVisibility}" Grid.Row="2" Grid.RowSpan="2"> </Border>
     </Grid>
 </Page>
