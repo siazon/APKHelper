@@ -92,18 +92,26 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="28" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid
+        <Grid 
             x:Name="CustomTitleBar"
-            Grid.Row="0"
-            Height="28"
+            Grid.Row="0" Margin="48 0 0 0"
             HorizontalAlignment="Left"
             Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
-            Visibility="{x:Bind helper:UIHelper.HasTitleBar}" />
-       
+            Visibility="Visible" >
+            <TextBlock x:Name="tbTitle" VerticalAlignment="Center" Margin="5 0 0 0 " FontSize="16">APK 文件安装程序</TextBlock>
+        </Grid>
+        <AppBarButton FontSize="10" Width="48" Icon="Back" Click="AppBarButton_Click"
+                      Visibility="{Binding ElementName=CoreAppFrame, Path=CanGoBack,Mode=OneWay, 
+            Converter={StaticResource BoolToVisibilityConverter}}"
+                      />
+        <Border x:Name="titlebarleft" HorizontalAlignment="Left" Width="50" Visibility="{Binding ElementName=CoreAppFrame, Path=CanGoBack,Mode=OneWay, 
+            Converter={StaticResource BoolToVisibilityConverter},ConverterParameter='true'}"  Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+            <Image Height="25" Source="/Assets/256x256.png"></Image>
+        </Border>
         <!--<Button 
             x:Name="AboutButton" 
             Grid.Row="1"
@@ -128,71 +136,11 @@
                     Text="" />
             </StackPanel>
         </Button>-->
-        <!--<Frame
+        <Frame
             x:Name="CoreAppFrame"
             Grid.Row="2"
             x:FieldModifier="Public"
-            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />-->
-        <TextBlock x:Name="AppTitle" 
-                       VerticalAlignment="Top"
-                       Margin="10,8,0,0"
-                       Style="{StaticResource CaptionTextBlockStyle}" />
-        <NavigationView Canvas.ZIndex="0"   Margin="0 0 0 0"   Grid.Row="1" Grid.RowSpan="2"
-                        x:Name="NavigationViewControl" 
-                        IsBackEnabled="False"   
-                        IsBackButtonVisible="Collapsed"
-                        IsSettingsVisible="True"
-                        PaneOpening="NavigationViewControl_PaneOpened"
-                        PaneClosing="NavigationViewControl_PaneClosing"
-                        DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-                        AlwaysShowHeader="{Binding IsHeaderVisible, Mode=TwoWay}"
-                        Header="{Binding Header, Mode=TwoWay}"
-                        HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
-                        IsTabStop="False"
-                        MenuItemsSource="{Binding MenuItems,Mode=TwoWay}"
-                        SelectedItem="{Binding SelectedItem, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                        MenuItemTemplateSelector="{StaticResource navigationItemTemplateSelector}">
-            <!--<NavigationView.AutoSuggestBox>
-                <AutoSuggestBox
-                       PlaceholderText ="{Binding SearchString}"
-                       TextMemberPath="Name" >
-                </AutoSuggestBox>
-            </NavigationView.AutoSuggestBox>-->
-            <NavigationView.PaneCustomContent>
-                <StackPanel>
-                    <ListView x:Name="menuList" SelectionMode="Single"
-                              SingleSelectionFollowsFocus="False"
-                              ItemsSource="{Binding RootMenuItems, Mode=TwoWay}"
-                              SelectedItem="{Binding SelectedRootMenuItem, Mode=TwoWay}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid HorizontalAlignment="Left"
-                                      Height="40"
-                                      Margin="-16,0,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="48" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Grid.Column="0"
-                                              FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                              Glyph="{Binding Icon}" />
-                                    <TextBlock Text="{Binding Name}"
-                                               Grid.Column="1"
-                                               VerticalAlignment="Center" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <NavigationViewItemSeparator />
-                </StackPanel>
-            </NavigationView.PaneCustomContent>
-            <Frame Name="MainFrame" IsNavigationStackEnabled="False" />
-        </NavigationView>
-        <!--<Frame 
-            x:Name="CoreAppFrame"
-              Grid.Row="2" Grid.RowSpan="2"
-            x:FieldModifier="Public" Visibility="{Binding ActionVisibility}"
-            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />-->
-        <Border x:Name="borInstall"  Visibility="{Binding ActionVisibility}" Grid.Row="2" Grid.RowSpan="2"> </Border>
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+        <!--<Border x:Name="borInstall"  Visibility="{Binding ActionVisibility}"  Grid.RowSpan="5"> </Border>-->
     </Grid>
 </Page>

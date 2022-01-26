@@ -13,6 +13,27 @@
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\Images\alipay.png" />
+    <Content Remove="Assets\Images\baidu.png" />
+    <Content Remove="Assets\Images\didi.png" />
+    <Content Remove="Assets\Images\email.png" />
+    <Content Remove="Assets\Images\facebook.png" />
+    <Content Remove="Assets\Images\game.png" />
+    <Content Remove="Assets\Images\gift.png" />
+    <Content Remove="Assets\Images\google.png" />
+    <Content Remove="Assets\Images\list.png" />
+    <Content Remove="Assets\Images\notice.png" />
+    <Content Remove="Assets\Images\plus.png" />
+    <Content Remove="Assets\Images\QQ.png" />
+    <Content Remove="Assets\Images\relax.png" />
+    <Content Remove="Assets\Images\taobao.png" />
+    <Content Remove="Assets\Images\tiktok.png" />
+    <Content Remove="Assets\Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Controls\FeatureButton.xaml" />
+    <None Remove="Controls\HotInfoControl.xaml" />
+    <None Remove="Pages\SearchPage.xaml" />
     <None Remove="Pages\SettingsPages\WebViewPage.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +64,9 @@
 
   <ItemGroup>
     <Content Update="Assets\256x256.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Assets\Images\setting.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="Assets\LargeTile.scale-100.png">
@@ -208,6 +232,63 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Update="Assets\Images\alipay.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\baidu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\didi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\email.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\facebook.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\game.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\gift.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\google.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\list.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\notice.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\QQ.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\relax.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\taobao.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\tiktok.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Images\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Page Update="Controls\HotInfoControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Controls\FeatureButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\SearchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="Properties\PublishProfiles\win10-arm64.pubxml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>

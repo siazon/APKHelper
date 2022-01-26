@@ -13,10 +13,8 @@
         <local:ApplicationConverter x:Key="ApplicationConverter" />
     </Page.Resources>
     <Grid>
-        <controls:DataGrid
+        <controls:DataGrid Margin="16"
             x:Name="ApplicationDataGrid"
-            Margin="{x:Bind helper:UIHelper.ScrollViewerMargin}"
-            Padding="{x:Bind helper:UIHelper.ScrollViewerPadding}"
             AutoGenerateColumns="False"
             CanUserReorderColumns="True"
             CanUserResizeColumns="True"
@@ -45,7 +43,7 @@
                     Tag="State" />
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <Controls:TitleBar
+        <Controls:TitleBar Visibility="Collapsed"
             x:Name="TitleBar"
             Title="{x:Bind Title}"
             BackRequested="TitleBar_BackRequested"
@@ -54,7 +52,7 @@
             RefreshButtonVisibility="Visible"
             RefreshEvent="TitleBar_RefreshEvent">
             <Controls:TitleBar.RightAreaContent>
-                <ComboBox
+                <ComboBox 
                     x:Name="DeviceComboBox"
                     VerticalAlignment="Center" SelectedIndex="0"
                     ItemsSource="{x:Bind DeviceList, Mode=OneWay}"

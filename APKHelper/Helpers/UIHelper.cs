@@ -27,7 +27,7 @@ namespace APKHelper.Helpers
 
     internal static partial class UIHelper
     {
-        public static bool HasTitleBar => !AppWindowTitleBar.IsCustomizationSupported();
+        public static bool HasTitleBar => AppWindowTitleBar.IsCustomizationSupported();
         public static double TitleBarHeight => 0;
         public static double PageTitleHeight => HasTitleBar ? 48 : 48 + TitleBarHeight;
         public static Thickness StackPanelMargin => new Thickness(0, PageTitleHeight, 0, 0);

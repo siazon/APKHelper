@@ -24,7 +24,7 @@ namespace APKHelper.Pages.SettingsPages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SettingsPage : Page, INotifyPropertyChanged
+    public sealed partial class SettingsPage : Page, INotifyPropertyChanged,BasePage
     {
         private new readonly DispatcherQueue DispatcherQueue = DispatcherQueue.GetForCurrentThread();
         private readonly ResourceLoader _loader = ResourceLoader.GetForViewIndependentUse("SettingsPage");
@@ -109,6 +109,8 @@ namespace APKHelper.Pages.SettingsPages
                 return $"{name} v{ver}";
             }
         }
+
+        public string Title =>"设置";
 
         public SettingsPage() => InitializeComponent();
 

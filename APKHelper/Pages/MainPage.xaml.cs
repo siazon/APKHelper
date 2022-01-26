@@ -22,14 +22,18 @@ namespace APKHelper.Pages
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        bool InstallModel = false;
         private bool HasBeenSmail;
         public Frame frame;
         MainViewModel Provider;
+
+   
+
         public MainPage()
         {
             InitializeComponent();
             this.Loaded += MainPage_Loaded;
-            NavigationService.Frame = MainFrame;
+            NavigationService.Frame = CoreAppFrame;
             Provider = new MainViewModel(this);
             DataContext = CacheData.Ins.mainVM = Provider;
             UIHelper.MainPage = this;
@@ -46,13 +50,25 @@ namespace APKHelper.Pages
                 UIHelper.CheckTheme();
             }
             UIHelper.MainWindow.SetTitleBar(CustomTitleBar);
-            MainFrame.Navigate(typeof(ApplicationsPage));
+
             //CoreAppFrame.Navigate(typeof(InstallPage));
-            borInstall.Child = new InstallPage();
+            // borInstall.Child = new InstallPage();
+        }
+
+        private void Frame_Navigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            BasePage page = e.Content as BasePage;
+            if (page != null)
+                tbTitle.Text = page.Title;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (InstallModel)
+                CoreAppFrame.Navigate(typeof(InstallPage));
+            else
+                CoreAppFrame.Navigate(typeof(SearchPage));
+            CoreAppFrame.Navigated += Frame_Navigated;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -60,7 +76,7 @@ namespace APKHelper.Pages
             switch ((sender as FrameworkElement).Name)
             {
                 case "AboutButton":
-                    _ = MainFrame.Navigate(typeof(SettingsPage));
+                    _ = CoreAppFrame.Navigate(typeof(SettingsPage));
                     break;
                 default:
                     break;
@@ -106,17 +122,17 @@ namespace APKHelper.Pages
         {
             const int smallLeftIndent = 0, largeLeftIndent = 34;
 
-            AppTitle.TranslationTransition = new Vector3Transition();
+            //AppTitle.TranslationTransition = new Vector3Transition();
 
-            if (sender.IsPaneOpen == false && (sender.DisplayMode == NavigationViewDisplayMode.Expanded ||
-                sender.DisplayMode == NavigationViewDisplayMode.Compact))
-            {
-                AppTitle.Translation = new System.Numerics.Vector3(largeLeftIndent, 0, 0);
-            }
-            else
-            {
-                AppTitle.Translation = new System.Numerics.Vector3(smallLeftIndent, 0, 0);
-            }
+            //if (sender.IsPaneOpen == false && (sender.DisplayMode == NavigationViewDisplayMode.Expanded ||
+            //    sender.DisplayMode == NavigationViewDisplayMode.Compact))
+            //{
+            //    AppTitle.Translation = new System.Numerics.Vector3(largeLeftIndent, 0, 0);
+            //}
+            //else
+            //{
+            //    AppTitle.Translation = new System.Numerics.Vector3(smallLeftIndent, 0, 0);
+            //}
         }
         private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
         {
@@ -124,10 +140,17 @@ namespace APKHelper.Pages
         }
         public void OpenInstallModel(bool isInstall)
         {
-            if (isInstall)
-                Provider.ActionVisibility = Visibility.Visible;
-            else
-                Provider.ActionVisibility = Visibility.Collapsed;
+            InstallModel = isInstall;
+            //if (isInstall)
+            //    Provider.ActionVisibility = Visibility.Visible;
+            //else
+            //    Provider.ActionVisibility = Visibility.Collapsed;
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CoreAppFrame.CanGoBack)
+                CoreAppFrame.GoBack();
         }
     }
 }

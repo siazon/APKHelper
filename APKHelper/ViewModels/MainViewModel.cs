@@ -56,6 +56,7 @@ namespace APKHelper.ViewModels
                 RootMenuItemSelectionChanged();
             }
         }
+       
         private bool isThemeVisible;
         public bool IsThemeVisible
         {
@@ -181,7 +182,7 @@ namespace APKHelper.ViewModels
             {
                 this.SectionHeader = Constants.Home;
                 this.IsHeaderVisible = false;
-                NavigationService.Frame.Navigate(typeof(ApplicationsPage), this);
+                NavigationService.Frame.Navigate(typeof(SearchPage), this);
             }
            else if (selectedItem.Content.ToString() == _loader.GetString("WebPage"))
             {
@@ -213,7 +214,7 @@ namespace APKHelper.ViewModels
                 this.IsThemeVisible = false;
                 this.Header = controlInfo.Name;
                 //this.IsHeaderVisible = true;
-                NavigationService.Frame.Navigate(typeof(ApplicationsPage));
+                NavigationService.Frame.Navigate(typeof(SearchPage));
 
             }
             else if (this.SelectedItem is DemoInfo demoInfo)
@@ -222,7 +223,7 @@ namespace APKHelper.ViewModels
                 //this.IsHeaderVisible = true;
                 this.IsThemeVisible = true;
                 this.DemoInfo = demoInfo;
-                NavigationService.Frame.Navigate(typeof(ApplicationsPage), this);
+                NavigationService.Frame.Navigate(typeof(SearchPage), this);
             }
             else if ((this.SelectedItem as NavigationViewItem).Content.ToString() == Constants.Settings|| (this.SelectedItem as NavigationViewItem).Content.ToString()=="设置")
             {

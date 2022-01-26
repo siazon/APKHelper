@@ -21,8 +21,10 @@ namespace APKHelper.Pages.SettingsPages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class WebViewPage : Page
+    public sealed partial class WebViewPage : Page,BasePage
     {
+        public string Title => "webView";
+
         public WebViewPage()
         {
             this.InitializeComponent();

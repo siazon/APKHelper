@@ -1,4 +1,5 @@
-﻿using APKHelper.Helpers;
+﻿using APKCommon;
+using APKHelper.Helpers;
 using APKHelper.ViewModels;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.UI;
@@ -11,6 +12,7 @@ using Microsoft.Windows.AppLifecycle;
 using System;
 using System.Linq;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -20,10 +22,12 @@ namespace APKHelper.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class InstallPage : Page
+    public sealed partial class InstallPage : Page, BasePage
     {
         internal InstallViewModel Provider;
 
+        private readonly ResourceLoader _loader = ResourceLoader.GetForViewIndependentUse("InstallPage");
+        public string Title { get => _loader.GetString("WebPage");  }
         public InstallPage() { 
             InitializeComponent();
 
@@ -106,9 +110,8 @@ namespace APKHelper.Pages
 
         private  void MoreDetailsHyperLink_Click(object sender, RoutedEventArgs e)
         {
-            CacheData.Ins.mainVM.ActionVisibility = Visibility.Collapsed;
-
-
+            var tei = NavigationService.Frame.CanGoBack;
+            NavigationService.Frame.Navigate(typeof(SearchPage));
             //var uri = new Uri("myapp2:");
             //var success = await Windows.System.Launcher.LaunchUriAsync(uri);
         }

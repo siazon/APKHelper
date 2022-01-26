@@ -23,7 +23,7 @@ namespace APKHelper.Pages.ToolsPages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ApplicationsPage : Page, INotifyPropertyChanged
+    public sealed partial class ApplicationsPage : Page, INotifyPropertyChanged,BasePage
     {
         private List<DeviceData> devices;
 
@@ -48,16 +48,8 @@ namespace APKHelper.Pages.ToolsPages
                 RaisePropertyChangedEvent();
             }
         }
-        private string _title;
 
-        public string Title
-        {
-            get { return _title; }
-            set { _title = value;
-                RaisePropertyChangedEvent();
-            }
-        }
-
+        public string Title => _loader.GetString("AppTitle"); 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -71,7 +63,6 @@ namespace APKHelper.Pages.ToolsPages
         private readonly ResourceLoader _loader = ResourceLoader.GetForViewIndependentUse("InstallPage");
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            Title = _loader.GetString("AppTitle");
             base.OnNavigatedTo(e);
             await Task.Run(() => _ = DispatcherQueue.TryEnqueue(() =>
             {

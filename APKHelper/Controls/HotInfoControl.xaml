@@ -1,0 +1,84 @@
+﻿<UserControl
+    x:Class="APKHelper.Controls.HotInfoControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:APKHelper.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Background="Red">
+    <Grid 
+        x:Name="Root"
+        Margin="0"
+        Padding="10"
+        BorderBrush="{StaticResource SystemAccentColor}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition />
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
+            <RowDefinition x:Name="CapabilitiesHeight" Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer
+            x:Name="CapabilitiesScrollViewer"
+            Grid.Row="1"
+            VerticalScrollBarVisibility="Auto">
+            <Grid >
+                <Grid   x:Name="RichTextBlockCapabilities" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10 0"></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Column="1"></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="1" ></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="1" Grid.Column="1"></TextBlock>
+                </Grid>
+                <RichEditBox Height="0" x:Name="RichTextBlockFullCapabilities"  Visibility="Collapsed" LostFocus="Root_LostFocus">
+              
+                </RichEditBox>
+                <Grid  x:Name="infolist" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="280"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10 0">中华人民共和国234</TextBlock>
+                    <TextBlock Margin="10 0" Grid.Column="1"></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="1" ></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="2" ></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="2" Grid.Column="1"></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="3" ></TextBlock>
+                    <TextBlock Margin="10 0" Grid.Row="3" Grid.Column="1"></TextBlock>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <Button
+            x:Name="MoreButton"
+            x:Uid="/CapabilitiesInfoControl/MoreButton"
+            Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom"
+            Padding="0"
+            AutomationProperties.Name="Show more capabilitiesMore"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="MoreButton_Click"
+            Foreground="{StaticResource SystemAccentColor}"
+            TabIndex="4"
+            UseSystemFocusVisuals="True" />
+    </Grid>
+</UserControl>
