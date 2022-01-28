@@ -46,13 +46,21 @@ namespace APKHelper
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            RegisterExceptionHandlingSynchronizationContext();
-            ResourceLoader loader = ResourceLoader.GetForViewIndependentUse();
-            m_window = new MainWindow()
+            try
             {
-                Title = loader.GetString("AppName")
-            };
-            m_window.Activate();
+                RegisterExceptionHandlingSynchronizationContext();
+                ResourceLoader loader = ResourceLoader.GetForViewIndependentUse();
+                m_window = new MainWindow()
+                {
+                    Title = loader.GetString("AppName")
+                };
+                m_window.Activate();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        
         }
         private void Application_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
@@ -70,9 +78,17 @@ namespace APKHelper
         /// </summary>
         private void RegisterExceptionHandlingSynchronizationContext()
         {
-            ExceptionHandlingSynchronizationContext
-                .Register()
-                .UnhandledException += SynchronizationContext_UnhandledException;
+            try
+            {
+                ExceptionHandlingSynchronizationContext
+                                .Register()
+                                .UnhandledException += SynchronizationContext_UnhandledException;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
         }
 
         private void SynchronizationContext_UnhandledException(object sender, APKHelper.Helpers.Exceptions.UnhandledExceptionEventArgs e)
