@@ -82,7 +82,7 @@ namespace APKHelper.Helpers
         {
             DispatcherQueue.EnqueueAsync(() =>
             {
-                _ = (MainPage?.CoreAppFrame.Navigate(pageType, e, TransitionInfo));
+               // _ = (MainPage?.CoreAppFrame.Navigate(pageType, e, TransitionInfo));
             });
         }
 

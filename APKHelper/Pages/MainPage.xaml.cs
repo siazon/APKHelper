@@ -1,5 +1,6 @@
 ﻿using APKHelper.Helpers;
 using APKHelper.Pages.SettingsPages;
+using APKHelper.Pages.ToolsPages;
 using CommunityToolkit.WinUI.Helpers;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
@@ -74,6 +75,31 @@ namespace APKHelper.Pages
                 }
             }
             catch { }
+        }
+
+        private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            switch ((args.SelectedItem as NavigationViewItem).Content.ToString())
+            {
+                case "安装":
+                    CoreAppFrame.Navigate(typeof(InstallPage));
+                    break;
+                case "应用":
+                    CoreAppFrame.Navigate(typeof(ApplicationsPage));
+                    break;
+                case "正在运行":
+                    CoreAppFrame.Navigate(typeof(ApplicationsPage));
+                    break;
+                case "文件":
+                    CoreAppFrame.Navigate(typeof(ProcessesPage));
+                    break;
+                case "设备":
+                    CoreAppFrame.Navigate(typeof(ApplicationsPage));
+                    break;
+                case "设置":
+                    CoreAppFrame.Navigate(typeof(SettingsPage));
+                    break;
+            }
         }
     }
 }

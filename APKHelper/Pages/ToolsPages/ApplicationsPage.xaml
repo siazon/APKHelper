@@ -15,8 +15,7 @@
     <Grid>
         <controls:DataGrid
             x:Name="ApplicationDataGrid"
-            Margin="{x:Bind helper:UIHelper.ScrollViewerMargin}"
-            Padding="{x:Bind helper:UIHelper.ScrollViewerPadding}"
+         
             AutoGenerateColumns="False"
             CanUserReorderColumns="True"
             CanUserResizeColumns="True"
@@ -45,7 +44,7 @@
                     Tag="State" />
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <Controls:TitleBar
+        <Controls:TitleBar 
             x:Name="TitleBar"
             Title="Applications"
             BackRequested="TitleBar_BackRequested"

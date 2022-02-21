@@ -13,8 +13,6 @@
     </Page.Resources>
     <Grid>
         <controls:DataGrid
-            Margin="0,40,0,0"
-            Padding="0,-40,0,0"
             AutoGenerateColumns="False"
             CanUserReorderColumns="True"
             CanUserResizeColumns="True"
@@ -44,7 +42,7 @@
                     Tag="Detail" />
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <Controls:TitleBar
+        <Controls:TitleBar 
             x:Name="TitleBar"
             Title="Processes"
             BackRequested="TitleBar_BackRequested"

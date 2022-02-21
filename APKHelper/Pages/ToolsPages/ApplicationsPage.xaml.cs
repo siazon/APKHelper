@@ -64,44 +64,53 @@ namespace APKHelper.Pages.ToolsPages
                 GetDevices();
             }));
         }
-
+      
         private void GetDevices()
         {
-            devices = new AdvancedAdbClient().GetDevices();
-            DeviceList.Clear();
-            if (devices.Count > 0)
+            try
             {
-                foreach (DeviceData device in devices)
+
+
+                devices = new AdvancedAdbClient().GetDevices();
+                DeviceList.Clear();
+                if (devices.Count > 0)
                 {
-                    if (!string.IsNullOrEmpty(device.Name))
+                    foreach (DeviceData device in devices)
                     {
-                        DeviceList.Add(device.Name);
+                        if (!string.IsNullOrEmpty(device.Name))
+                        {
+                            DeviceList.Add(device.Name);
+                        }
+                        else if (!string.IsNullOrEmpty(device.Model))
+                        {
+                            DeviceList.Add(device.Model);
+                        }
+                        else if (!string.IsNullOrEmpty(device.Product))
+                        {
+                            DeviceList.Add(device.Product);
+                        }
+                        else if (!string.IsNullOrEmpty(device.Serial))
+                        {
+                            DeviceList.Add(device.Serial);
+                        }
+                        else
+                        {
+                            DeviceList.Add("Device");
+                        }
                     }
-                    else if (!string.IsNullOrEmpty(device.Model))
+                    if (DeviceComboBox.SelectedIndex == -1)
                     {
-                        DeviceList.Add(device.Model);
-                    }
-                    else if (!string.IsNullOrEmpty(device.Product))
-                    {
-                        DeviceList.Add(device.Product);
-                    }
-                    else if (!string.IsNullOrEmpty(device.Serial))
-                    {
-                        DeviceList.Add(device.Serial);
-                    }
-                    else
-                    {
-                        DeviceList.Add("Device");
+                        DeviceComboBox.SelectedIndex = 0;
                     }
                 }
-                if (DeviceComboBox.SelectedIndex == -1)
+                else if (Applications != null)
                 {
-                    DeviceComboBox.SelectedIndex = 0;
+                    Applications.Clear();
                 }
             }
-            else if (Applications != null)
+            catch (Exception ex)
             {
-                Applications.Clear();
+
             }
         }
 
@@ -134,8 +143,11 @@ namespace APKHelper.Pages.ToolsPages
             TitleBar.ShowProgressRing();
             GetDevices();
             int index = DeviceComboBox.SelectedIndex;
-            PackageManager manager = new PackageManager(new AdvancedAdbClient(), devices[DeviceComboBox.SelectedIndex]);
-            Applications = await Task.Run(() => { return CheckAPP(manager.Packages, index); });
+            if (index >= 0)
+            {
+                PackageManager manager = new PackageManager(new AdvancedAdbClient(), devices[DeviceComboBox.SelectedIndex]);
+                Applications = await Task.Run(() => { return CheckAPP(manager.Packages, index); });
+            }
             TitleBar.HideProgressRing();
         }
 

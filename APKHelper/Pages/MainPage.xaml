@@ -8,6 +8,11 @@
     NavigationCacheMode="Enabled"
     SizeChanged="Page_SizeChanged"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="SymbolIcon">
+            <Setter Property="Foreground" Value="#219bee"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -25,7 +30,7 @@
             HorizontalAlignment="Left"
             Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
             Visibility="{x:Bind helper:UIHelper.HasTitleBar}" />
-        <Button
+        <Button 
             x:Name="AboutButton"
             Grid.RowSpan="2"
             Width="28"
@@ -49,10 +54,66 @@
                     Text="" />
             </StackPanel>
         </Button>
-        <Frame
+
+
+        <NavigationView x:Name="nvSample"  Grid.Row="1"  Grid.ColumnSpan="2"
+    IsSettingsVisible="True" IsPaneOpen="True" 
+    IsBackButtonVisible="Auto" IsPaneToggleButtonVisible="False"   
+                        SelectionChanged="NavigationView_SelectionChanged" 
+    IsBackEnabled="True"
+    Header="Header" 
+    AlwaysShowHeader="False"
+    PaneDisplayMode="Left" OpenPaneLength="200"
+    IsTabStop="False">
+            <NavigationView.Background>
+                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                    <GradientStop Color="#ffffff" Offset="0"/>
+                    <GradientStop Color="#eeeeee" Offset="1"/>
+                </LinearGradientBrush>
+            </NavigationView.Background>
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Content="应用" />
+                <NavigationViewItem Content="安装" Tag="SamplePage1" x:Name="menuInstall">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="SwitchApps" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="应用" Tag="SamplePage1" x:Name="menuApp">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="AllApps"  />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="正在运行" Tag="SamplePage1" x:Name="menuRuning">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="OtherUser" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItemHeader Content="内容" />
+                <NavigationViewItem Content="文件" Tag="SamplePage2" x:Name="SamplePage2Item" SelectsOnInvoked="True">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Folder"  />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItemHeader Content="设备" />
+                <NavigationViewItem Content="设备" Tag="SamplePage3" x:Name="SamplePage3Item">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="Refresh" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <NavigationView.PaneFooter>
+                <StackPanel x:Name="FooterStackPanel" Orientation="Vertical" Visibility="Collapsed">
+                    <NavigationViewItem Icon="Download" AutomationProperties.Name="download" />
+                    <NavigationViewItem Icon="Favorite" AutomationProperties.Name="favorite" />
+                </StackPanel>
+            </NavigationView.PaneFooter >
+            <Frame x:Name="CoreAppFrame"/>
+        </NavigationView>
+        <!--<Frame
             x:Name="CoreAppFrame"
             Grid.Row="1"
             x:FieldModifier="Public"
-            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}" />-->
     </Grid>
 </Page>

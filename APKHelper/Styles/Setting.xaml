@@ -98,7 +98,7 @@
                             Background="Transparent"
                             BorderBrush="Transparent"
                             BorderThickness="2"
-                            CornerRadius="4"
+                            CornerRadius="0"
                             Visibility="{TemplateBinding RightIconVisibility}">
                             <FontIcon
                                 x:Name="ExpandCollapseChevron"

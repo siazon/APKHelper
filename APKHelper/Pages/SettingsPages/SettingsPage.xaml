@@ -162,7 +162,7 @@
                 </controls:SettingsGroup>
             </StackPanel>
         </ScrollViewer>
-        <controls:TitleBar
+        <controls:TitleBar 
             x:Name="TitleBar"
             x:Uid="/SettingsPage/TitleBar"
             BackRequested="TitleBar_BackRequested"
